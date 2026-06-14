@@ -6,11 +6,197 @@
 
 <title>Payment | Safi Store</title>
 
-<link rel="stylesheet" href="payment.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
 
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#0f172a;
+    min-height:100vh;
+    color:white;
+}
+
+header{
+    background:#111827;
+    padding:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.logo{
+    font-size:28px;
+    font-weight:800;
+    background:linear-gradient(45deg,#3b82f6,#8b5cf6);
+    background-clip:text;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.back-btn{
+    text-decoration:none;
+    color:white;
+    background:#1e293b;
+    padding:10px 18px;
+    border-radius:10px;
+}
+
+.payment-page{
+    min-height:calc(100vh - 80px);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.payment-card{
+    width:100%;
+    max-width:500px;
+    background:#111827;
+    border-radius:25px;
+    padding:30px;
+    text-align:center;
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:0 20px 50px rgba(0,0,0,.4);
+}
+
+.payment-card h1{
+    margin-bottom:10px;
+}
+
+.subtitle{
+    color:#94a3b8;
+    margin-bottom:20px;
+}
+
+.qr-image{
+    width:180px;
+    height:180px;
+    object-fit:contain;
+    background:white;
+    padding:10px;
+    border-radius:20px;
+    border:3px solid #22c55e;
+    display:block;
+    margin:20px auto;
+}
+
+.upi-box{
+    background:#1e293b;
+    padding:18px;
+    border-radius:15px;
+    margin:20px 0;
+}
+
+.upi-copy{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:10px;
+}
+
+.upi-copy h3{
+    color:#60a5fa;
+    font-size:18px;
+}
+
+.upi-copy button{
+    border:none;
+    background:#2563eb;
+    color:white;
+    padding:8px 15px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.amount-box{
+    background:#1e293b;
+    padding:18px;
+    border-radius:15px;
+    margin:20px 0;
+    border-left:5px solid #22c55e;
+}
+
+.amount-box span{
+    color:#94a3b8;
+}
+
+.amount-box h2{
+    margin-top:10px;
+    color:#22c55e;
+    font-size:32px;
+}
+
+.instructions{
+    background:#1e293b;
+    border-radius:15px;
+    padding:20px;
+    text-align:left;
+    margin-bottom:20px;
+}
+
+.instructions h4{
+    margin-bottom:10px;
+}
+
+.instructions ul{
+    padding-left:20px;
+}
+
+.instructions li{
+    margin-bottom:8px;
+    color:#cbd5e1;
+}
+
+#finishPaymentBtn{
+    width:100%;
+    height:55px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(
+        135deg,
+        #22c55e,
+        #16a34a
+    );
+    color:white;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+#finishPaymentBtn:hover{
+    transform:translateY(-2px);
+}
+
+@media(max-width:600px){
+
+    .payment-card{
+        padding:20px;
+    }
+
+    .qr-image{
+        width:150px;
+        height:150px;
+    }
+
+    .logo{
+        font-size:22px;
+    }
+
+}
+
+</style>
 </head>
 <body>
 
@@ -21,8 +207,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     </div>
 
     <a href="cart.html" class="back-btn">
-        <i class="fa-solid fa-arrow-left"></i>
-        Back To Cart
+        Back
     </a>
 
 </header>
@@ -31,20 +216,16 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
     <div class="payment-card">
 
-        <h1>Complete Your Payment</h1>
+        <h1>Complete Payment</h1>
 
         <p class="subtitle">
-            Scan the QR code or copy the UPI ID below.
+            Scan QR Code or copy UPI ID
         </p>
 
-        <div class="qr-container">
-
-            <img
-            src="qr.jpeg"
-            alt="Payment QR"
-            class="qr-image">
-
-        </div>
+        <img
+        src="qr.jpeg"
+        alt="QR Code"
+        class="qr-image">
 
         <div class="upi-box">
 
@@ -84,32 +265,125 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
             <ul>
 
-                <li>Scan QR code or use UPI ID.</li>
+                <li>Scan the QR code.</li>
 
-                <li>Complete payment.</li>
+                <li>Complete the payment.</li>
 
                 <li>Take a screenshot.</li>
 
-                <li>Click "I've Finished Payment".</li>
+                <li>Click the button below.</li>
 
-                <li>Attach screenshot in WhatsApp.</li>
+                <li>Send screenshot on WhatsApp.</li>
 
             </ul>
 
         </div>
 
-        <button
-        id="finishPaymentBtn">
-
+        <button id="finishPaymentBtn">
             I've Finished Payment
-
         </button>
 
     </div>
 
 </section>
 
-<script src="payment.js"></script>
+<script>
+
+// CART
+
+let cart =
+JSON.parse(
+localStorage.getItem("cart")
+) || [];
+
+let total = 0;
+
+cart.forEach(item=>{
+
+    total += item.price * item.qty;
+
+});
+
+document.getElementById(
+"orderTotal"
+).innerText = "₹" + total;
+
+// COPY UPI
+
+function copyUPI(){
+
+    const upi =
+    document.getElementById(
+    "upiId"
+    ).innerText;
+
+    navigator.clipboard
+    .writeText(upi);
+
+    const btn =
+    document.getElementById(
+    "copyBtn"
+    );
+
+    btn.innerHTML =
+    "Copied ✓";
+
+    setTimeout(()=>{
+
+        btn.innerHTML =
+        "Copy";
+
+    },2000);
+
+}
+
+// PAYMENT COMPLETE
+
+document.getElementById(
+"finishPaymentBtn"
+).addEventListener(
+"click",
+()=>{
+
+    let details = "";
+
+    cart.forEach(item=>{
+
+        details +=
+        `${item.name}
+Qty:${item.qty}
+Price:₹${item.price}
+
+`;
+
+    });
+
+    const msg =
+
+`Hello,
+
+I completed payment.
+
+Order Details:
+
+${details}
+
+Total Amount: ₹${total}
+
+I am attaching payment screenshot.
+
+Please confirm my order.
+
+Thank you.`;
+
+    window.open(
+    `https://wa.me/919345314960?text=${encodeURIComponent(msg)}`,
+    "_blank"
+    );
+
+});
+
+</script>
 
 </body>
 </html>
