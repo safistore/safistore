@@ -1,148 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Payment | Safi Store</title>
 
-<link rel="stylesheet"
-href="payment.css">
+<link rel="stylesheet" href="payment.css">
 
-<link
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-rel="stylesheet">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
 <body>
 
-<!-- HEADER -->
-
 <header>
 
     <div class="logo">
-
         SAFI STORE
-
     </div>
 
-    <a href="cart.html"
-    class="back-btn">
-
+    <a href="cart.html" class="back-btn">
         <i class="fa-solid fa-arrow-left"></i>
-
         Back To Cart
-
     </a>
 
 </header>
 
-<!-- PAYMENT SECTION -->
-
-<main class="payment-page">
+<section class="payment-page">
 
     <div class="payment-card">
 
-        <h1>
-
-            Complete Your Payment
-
-        </h1>
+        <h1>Complete Your Payment</h1>
 
         <p class="subtitle">
-
-            Scan the QR Code using
-            PhonePe, GPay, Paytm or any UPI App.
-
+            Scan the QR code or copy the UPI ID below.
         </p>
-
-        <!-- QR IMAGE -->
 
         <div class="qr-container">
 
             <img
-            src="images/qr.jpg"
-            alt="UPI QR Code"
+            src="qr.jpeg"
+            alt="Payment QR"
             class="qr-image">
 
         </div>
 
-        <!-- UPI ID -->
-
         <div class="upi-box">
 
-            <span>
+            <span>UPI ID</span>
 
-                UPI ID
+            <div class="upi-copy">
 
-            </span>
+                <h3 id="upiId">
+                    9345314960@axl
+                </h3>
 
-            <h3>
+                <button
+                id="copyBtn"
+                onclick="copyUPI()">
 
-                9345314960@axl
+                    Copy
 
-            </h3>
+                </button>
+
+            </div>
 
         </div>
 
-        <!-- TOTAL -->
-
         <div class="amount-box">
 
-            <span>
-
-                Total Amount
-
-            </span>
+            <span>Total Amount</span>
 
             <h2 id="orderTotal">
-
                 ₹0
-
             </h2>
 
         </div>
 
-        <!-- INSTRUCTIONS -->
-
         <div class="instructions">
 
-            <h4>
-
-                Instructions
-
-            </h4>
+            <h4>Instructions</h4>
 
             <ul>
 
-                <li>
-                    Scan the QR code.
-                </li>
+                <li>Scan QR code or use UPI ID.</li>
 
-                <li>
-                    Complete the payment.
-                </li>
+                <li>Complete payment.</li>
 
-                <li>
-                    Take a screenshot.
-                </li>
+                <li>Take a screenshot.</li>
 
-                <li>
-                    Click "I've Finished Payment".
-                </li>
+                <li>Click "I've Finished Payment".</li>
 
-                <li>
-                    Attach the screenshot in WhatsApp and send it.
-                </li>
+                <li>Attach screenshot in WhatsApp.</li>
 
             </ul>
 
         </div>
-
-        <!-- BUTTON -->
 
         <button
         id="finishPaymentBtn">
@@ -153,7 +107,7 @@ rel="stylesheet">
 
     </div>
 
-</main>
+</section>
 
 <script src="payment.js"></script>
 

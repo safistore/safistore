@@ -1,11 +1,7 @@
-// LOAD CART
-
 let cart =
 JSON.parse(
 localStorage.getItem("cart")
 ) || [];
-
-// ELEMENTS
 
 const orderTotal =
 document.getElementById(
@@ -17,56 +13,68 @@ document.getElementById(
 "finishPaymentBtn"
 );
 
-// CALCULATE TOTAL
-
 let total = 0;
 
 cart.forEach(item => {
 
-    total +=
-    item.price *
-    item.qty;
+total +=
+item.price *
+item.qty;
 
 });
 
-// DISPLAY TOTAL
-
-orderTotal.textContent =
+orderTotal.innerText =
 `₹${total}`;
 
-// FINISH PAYMENT
+function copyUPI(){
 
-finishPaymentBtn.addEventListener(
+const upi =
+document.getElementById(
+"upiId"
+).innerText;
+
+navigator.clipboard
+.writeText(upi)
+.then(()=>{
+
+const btn =
+document.getElementById(
+"copyBtn"
+);
+
+btn.innerHTML =
+"Copied ✓";
+
+setTimeout(()=>{
+
+btn.innerHTML =
+"Copy";
+
+},2000);
+
+});
+
+}
+
+finishPaymentBtn
+.addEventListener(
 "click",
-() => {
+()=>{
 
-    if(cart.length === 0){
+let details = "";
 
-        alert(
-        "Your cart is empty."
-        );
+cart.forEach(item=>{
 
-        return;
-    }
-
-    // CREATE ORDER DETAILS
-
-    let orderDetails =
-    "";
-
-    cart.forEach(item => {
-
-        orderDetails +=
-
-        `${item.name}
+details +=
+`${item.name}
 Qty: ${item.qty}
 Price: ₹${item.price}
 
 `;
 
-    });
+});
 
-    const message =
+const message =
 
 `Hello,
 
@@ -74,7 +82,7 @@ I have completed the payment.
 
 Order Details:
 
-${orderDetails}
+${details}
 
 Total Amount: ₹${total}
 
@@ -84,29 +92,20 @@ Please verify and confirm my order.
 
 Thank you.`;
 
-    // OPEN WHATSAPP
+window.open(
+`https://wa.me/919345314960?text=${encodeURIComponent(message)}`,
+"_blank"
+);
 
-    window.open(
+localStorage.removeItem(
+"cart"
+);
 
-    `https://wa.me/919345314960?text=${encodeURIComponent(message)}`,
+setTimeout(()=>{
 
-    "_blank"
+window.location.href =
+"thankyou.html";
 
-    );
-
-    // CLEAR CART
-
-    localStorage.removeItem(
-    "cart"
-    );
-
-    // REDIRECT
-
-    setTimeout(() => {
-
-        window.location.href =
-        "thankyou.html";
-
-    }, 1500);
+},1500);
 
 });
