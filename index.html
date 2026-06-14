@@ -160,6 +160,20 @@ footer{
     text-decoration:none;
     font-size:28px;
 }
+
+.payment-section{
+    text-align:center;
+    background:#fff;
+    padding:30px;
+    border-radius:12px;
+    margin-top:30px;
+}
+
+.qr-code{
+    width:250px;
+    max-width:100%;
+    margin:20px 0;
+}
 </style>
 </head>
 <body>
@@ -249,6 +263,20 @@ target="_blank">
 💬
 </a>
 
+<div class="payment-section">
+    <h2>Scan & Pay</h2>
+
+    <img src="images/payment-qr.png"
+         alt="UPI QR Code"
+         class="qr-code">
+
+    <p>UPI ID: safiq@upi</p>
+
+    <button onclick="sendOrder()">
+        I've Paid
+    </button>
+</div>
+
 <script>
 function order(product,price){
 
@@ -268,6 +296,23 @@ Please share the details.`;
 `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 
     window.open(url,'_blank');
+}
+
+function sendOrder(){
+
+    const phone = "919876543210";
+
+    const message =
+`Hello,
+
+I have completed the payment.
+
+Please verify my payment and confirm the order.`;
+
+    window.open(
+      `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
+      "_blank"
+    );
 }
 </script>
 
