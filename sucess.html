@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Order Success</title>
+</head>
+<body>
+
+<h1>
+✅ Payment Submitted
+</h1>
+
+<p>
+Thank you for your order.
+</p>
+
+<button onclick="sendWhatsapp()">
+Send Order Details
+</button>
+
+<script>
+
+function sendWhatsapp(){
+
+let phone =
+"919876543210";
+
+let message =
+"Hello, I have completed payment. Please verify my order.";
+
+window.open(
+`https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
+"_blank"
+);
+
+}
+
+</script>
+
+</body>
+</html>

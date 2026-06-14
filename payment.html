@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Payment</title>
+
+<link rel="stylesheet"
+href="payment.css">
+</head>
+<body>
+
+<div class="payment-container">
+
+    <h1>Complete Your Payment</h1>
+
+    <div class="payment-card">
+
+        <img
+        src="images/qr.png"
+        alt="QR Code"
+        class="qr">
+
+        <h2>Scan & Pay</h2>
+
+        <p>
+            UPI ID:
+            safistore@upi
+        </p>
+
+        <p id="amount"></p>
+
+        <button
+        onclick="paymentDone()">
+            I Have Paid
+        </button>
+
+    </div>
+
+</div>
+
+<script src="payment.js"></script>
+
+</body>
+</html>

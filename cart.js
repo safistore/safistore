@@ -118,3 +118,7 @@ Please confirm my order.`;
 }
 
 renderCart();
+
+function goToPayment(){
+    window.location.href = "payment.html";
+}
