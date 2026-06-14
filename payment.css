@@ -1,57 +1,298 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Poppins,sans-serif;
+    font-family:'Poppins',sans-serif;
 }
 
 body{
-    background:#f5f7fb;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    background:#0f172a;
+    color:white;
     min-height:100vh;
 }
 
-.payment-container{
-    width:100%;
-    max-width:500px;
-    padding:20px;
+/* HEADER */
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:20px 8%;
+
+    background:#111827;
+
+    border-bottom:
+    1px solid rgba(
+        255,
+        255,
+        255,
+        .08
+    );
 }
+
+.logo{
+    font-size:28px;
+    font-weight:800;
+
+    background:linear-gradient(
+        45deg,
+        #3b82f6,
+        #8b5cf6
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.back-btn{
+    text-decoration:none;
+    color:white;
+
+    background:#1e293b;
+
+    padding:12px 20px;
+
+    border-radius:10px;
+
+    transition:.3s;
+}
+
+.back-btn:hover{
+    background:#334155;
+}
+
+/* PAGE */
+
+.payment-page{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:50px 20px;
+}
+
+/* CARD */
 
 .payment-card{
-    background:white;
-    padding:40px;
-    border-radius:20px;
-    text-align:center;
-    box-shadow:
-    0 10px 30px rgba(0,0,0,.08);
-}
-
-.qr{
-    width:250px;
-    margin:20px 0;
-}
-
-h1{
-    text-align:center;
-    margin-bottom:20px;
-}
-
-#amount{
-    margin:20px 0;
-    font-size:22px;
-    font-weight:600;
-    color:#16a34a;
-}
-
-button{
     width:100%;
-    height:55px;
+    max-width:650px;
+
+    background:rgba(
+        17,
+        24,
+        39,
+        .95
+    );
+
+    border:
+    1px solid rgba(
+        255,
+        255,
+        255,
+        .08
+    );
+
+    border-radius:25px;
+
+    padding:40px;
+
+    text-align:center;
+
+    box-shadow:
+    0 15px 40px rgba(
+        0,
+        0,
+        0,
+        .35
+    );
+}
+
+.payment-card h1{
+    margin-bottom:10px;
+}
+
+.subtitle{
+    color:#94a3b8;
+
+    margin-bottom:30px;
+
+    line-height:1.7;
+}
+
+/* QR */
+
+.qr-container{
+    margin:25px 0;
+}
+
+.qr-image{
+    width:280px;
+    max-width:100%;
+
+    border-radius:20px;
+
+    background:white;
+
+    padding:15px;
+
+    box-shadow:
+    0 10px 30px rgba(
+        255,
+        255,
+        255,
+        .08
+    );
+}
+
+/* UPI */
+
+.upi-box{
+    background:#1e293b;
+
+    border-radius:15px;
+
+    padding:20px;
+
+    margin:20px 0;
+}
+
+.upi-box span{
+    color:#94a3b8;
+    display:block;
+    margin-bottom:10px;
+}
+
+.upi-box h3{
+    color:#60a5fa;
+    font-size:22px;
+    word-break:break-all;
+}
+
+/* AMOUNT */
+
+.amount-box{
+    background:#111827;
+
+    border:
+    1px solid rgba(
+        34,
+        197,
+        94,
+        .3
+    );
+
+    border-radius:15px;
+
+    padding:25px;
+
+    margin:25px 0;
+}
+
+.amount-box span{
+    color:#94a3b8;
+}
+
+.amount-box h2{
+    margin-top:10px;
+
+    color:#22c55e;
+
+    font-size:34px;
+}
+
+/* INSTRUCTIONS */
+
+.instructions{
+    text-align:left;
+
+    background:#1e293b;
+
+    border-radius:15px;
+
+    padding:20px;
+
+    margin:25px 0;
+}
+
+.instructions h4{
+    margin-bottom:15px;
+}
+
+.instructions ul{
+    padding-left:20px;
+}
+
+.instructions li{
+    margin-bottom:10px;
+    color:#cbd5e1;
+}
+
+/* BUTTON */
+
+#finishPaymentBtn{
+    width:100%;
+
+    height:60px;
+
     border:none;
-    border-radius:10px;
-    background:#22c55e;
-    color:white;
-    font-size:18px;
+
+    border-radius:15px;
+
     cursor:pointer;
+
+    font-size:17px;
+    font-weight:700;
+
+    color:white;
+
+    background:
+    linear-gradient(
+        45deg,
+        #22c55e,
+        #16a34a
+    );
+
+    transition:.3s;
+}
+
+#finishPaymentBtn:hover{
+
+    transform:
+    translateY(-3px);
+
+    box-shadow:
+    0 15px 30px rgba(
+        34,
+        197,
+        94,
+        .3
+    );
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    header{
+        padding:15px 5%;
+    }
+
+    .payment-card{
+        padding:25px;
+    }
+
+    .payment-card h1{
+        font-size:28px;
+    }
+
+    .qr-image{
+        width:220px;
+    }
+
+    .amount-box h2{
+        font-size:28px;
+    }
 }

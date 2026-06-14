@@ -1,45 +1,401 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Safi Store</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Safi Store</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<link
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+rel="stylesheet">
+
 </head>
 <body>
 
+<!-- NAVBAR -->
+
 <header>
-    <div class="logo">SAFI STORE</div>
+
+    <div class="logo">
+        SAFI STORE
+    </div>
 
     <nav>
+
         <a href="#">Home</a>
-        <a href="#">Products</a>
-        <a href="cart.html">Cart 🛒</a>
+        <a href="#products">Products</a>
+
+        <button id="cartBtn">
+
+            <i class="fa-solid fa-cart-shopping"></i>
+
+            <span id="cartCount">
+                0
+            </span>
+
+        </button>
+
     </nav>
+
 </header>
 
+<!-- HERO -->
+
 <section class="hero">
-    <h1>Premium Fashion Collection</h1>
-    <p>Modern Products For Men & Women</p>
+
+    <h1>
+        Premium Products For Everyone
+    </h1>
+
+    <p>
+        Shop the latest products with secure payment and fast support.
+    </p>
+
 </section>
 
-<section class="products">
+<!-- PRODUCTS -->
 
-    <div class="card">
-        <img src="images/watch.jpg">
+<section id="products">
 
-        <div class="content">
-            <h3>Luxury Watch</h3>
+    <h2 class="section-title">
+        Featured Products
+    </h2>
+
+    <div class="product-grid">
+
+        <!-- PRODUCT 1 -->
+
+        <div class="product-card">
+
+            <img
+            src="https://picsum.photos/400/400?1">
+
+            <h3>Premium Watch</h3>
+
+            <p>
+                Elegant men's wrist watch.
+            </p>
+
             <h4>₹999</h4>
 
-            <button onclick="addToCart('Luxury Watch',999)">
+            <button
+            onclick="addToCart(
+            1,
+            'Premium Watch',
+            999,
+            'https://picsum.photos/400/400?1'
+            )">
+
                 Add To Cart
+
             </button>
+
         </div>
+
+        <!-- PRODUCT 2 -->
+
+        <div class="product-card">
+
+            <img
+            src="https://picsum.photos/400/400?2">
+
+            <h3>Fashion Bag</h3>
+
+            <p>
+                Stylish bag for women.
+            </p>
+
+            <h4>₹799</h4>
+
+            <button
+            onclick="addToCart(
+            2,
+            'Fashion Bag',
+            799,
+            'https://picsum.photos/400/400?2'
+            )">
+
+                Add To Cart
+
+            </button>
+
+        </div>
+
+        <!-- PRODUCT 3 -->
+
+        <div class="product-card">
+
+            <img
+            src="https://picsum.photos/400/400?3">
+
+            <h3>Sneakers</h3>
+
+            <p>
+                Comfortable everyday wear.
+            </p>
+
+            <h4>₹1499</h4>
+
+            <button
+            onclick="addToCart(
+            3,
+            'Sneakers',
+            1499,
+            'https://picsum.photos/400/400?3'
+            )">
+
+                Add To Cart
+
+            </button>
+
+        </div>
+
+        <!-- PRODUCT 4 -->
+
+        <div class="product-card">
+
+            <img
+            src="https://picsum.photos/400/400?4">
+
+            <h3>Bluetooth Speaker</h3>
+
+            <p>
+                Powerful sound experience.
+            </p>
+
+            <h4>₹1199</h4>
+
+            <button
+            onclick="addToCart(
+            4,
+            'Bluetooth Speaker',
+            1199,
+            'https://picsum.photos/400/400?4'
+            )">
+
+                Add To Cart
+
+            </button>
+
+        </div>
+
+        <!-- PRODUCT 5 -->
+
+        <div class="product-card">
+
+            <img
+            src="https://picsum.photos/400/400?5">
+
+            <h3>Sunglasses</h3>
+
+            <p>
+                UV protected stylish eyewear.
+            </p>
+
+            <h4>₹599</h4>
+
+            <button
+            onclick="addToCart(
+            5,
+            'Sunglasses',
+            599,
+            'https://picsum.photos/400/400?5'
+            )">
+
+                Add To Cart
+
+            </button>
+
+        </div>
+
+        <!-- PRODUCT 6 -->
+
+        <div class="product-card">
+
+            <img
+            src="https://picsum.photos/400/400?6">
+
+            <h3>Smart Bottle</h3>
+
+            <p>
+                Premium insulated bottle.
+            </p>
+
+            <h4>₹699</h4>
+
+            <button
+            onclick="addToCart(
+            6,
+            'Smart Bottle',
+            699,
+            'https://picsum.photos/400/400?6'
+            )">
+
+                Add To Cart
+
+            </button>
+
+        </div>
+
+        <!-- PRODUCT 7 -->
+
+        <div class="product-card">
+
+            <img
+            src="https://picsum.photos/400/400?7">
+
+            <h3>Headphones</h3>
+
+            <p>
+                Crystal clear audio.
+            </p>
+
+            <h4>₹1899</h4>
+
+            <button
+            onclick="addToCart(
+            7,
+            'Headphones',
+            1899,
+            'https://picsum.photos/400/400?7'
+            )">
+
+                Add To Cart
+
+            </button>
+
+        </div>
+
+        <!-- PRODUCT 8 -->
+
+        <div class="product-card">
+
+            <img
+            src="https://picsum.photos/400/400?8">
+
+            <h3>Leather Wallet</h3>
+
+            <p>
+                Premium leather finish.
+            </p>
+
+            <h4>₹499</h4>
+
+            <button
+            onclick="addToCart(
+            8,
+            'Leather Wallet',
+            499,
+            'https://picsum.photos/400/400?8'
+            )">
+
+                Add To Cart
+
+            </button>
+
+        </div>
+
+        <!-- PRODUCT 9 -->
+
+        <div class="product-card">
+
+            <img
+            src="https://picsum.photos/400/400?9">
+
+            <h3>Perfume</h3>
+
+            <p>
+                Long lasting fragrance.
+            </p>
+
+            <h4>₹899</h4>
+
+            <button
+            onclick="addToCart(
+            9,
+            'Perfume',
+            899,
+            'https://picsum.photos/400/400?9'
+            )">
+
+                Add To Cart
+
+            </button>
+
+        </div>
+
+        <!-- PRODUCT 10 -->
+
+        <div class="product-card">
+
+            <img
+            src="https://picsum.photos/400/400?10">
+
+            <h3>Backpack</h3>
+
+            <p>
+                Travel-friendly design.
+            </p>
+
+            <h4>₹1299</h4>
+
+            <button
+            onclick="addToCart(
+            10,
+            'Backpack',
+            1299,
+            'https://picsum.photos/400/400?10'
+            )">
+
+                Add To Cart
+
+            </button>
+
+        </div>
+
     </div>
 
 </section>
 
-<script src="script.js"></script>
+<!-- CART SIDEBAR -->
+
+<div id="cartSidebar">
+
+    <div class="cart-header">
+
+        <h2>My Cart</h2>
+
+        <button id="closeCart">
+            ×
+        </button>
+
+    </div>
+
+    <div id="cartItems">
+    </div>
+
+    <div class="cart-footer">
+
+        <h3>
+            Total:
+            ₹<span id="cartTotal">0</span>
+        </h3>
+
+        <button
+        id="goToCart">
+
+            Go To Cart
+
+        </button>
+
+    </div>
+
+</div>
+
+<script src="js/script.js"></script>
+
 </body>
 </html>
