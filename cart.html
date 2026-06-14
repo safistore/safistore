@@ -1,32 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Checkout</title>
-    <link rel="stylesheet" href="cart.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Shopping Cart</title>
+<link rel="stylesheet" href="cart.css">
 </head>
 <body>
 
-<div class="checkout">
+<div class="container">
 
-    <div class="left">
+    <div class="cart-section">
 
-        <h2>Order Summary</h2>
+        <h1>Shopping Cart</h1>
 
         <div id="cartItems"></div>
 
-        <h3>Total: ₹999</h3>
-
     </div>
 
-    <div class="right">
+    <div class="checkout-section">
 
-        <h2>Scan & Pay</h2>
+        <h2>Order Summary</h2>
+
+        <div class="summary">
+
+            <p>Total Items</p>
+            <span id="totalItems">0</span>
+
+        </div>
+
+        <div class="summary">
+
+            <p>Total Price</p>
+            <span id="totalPrice">₹0</span>
+
+        </div>
 
         <img src="images/qr.png" class="qr">
 
-        <p>UPI ID: safistore@upi</p>
-
-        <button onclick="confirmOrder()">
+        <button class="checkout-btn"
+        onclick="checkout()">
             Confirm Payment
         </button>
 
