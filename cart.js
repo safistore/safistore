@@ -100,7 +100,7 @@ function checkout(){
     );
 
     const phone =
-    "919876543210";
+    "919345314960";
 
     const msg =
 `Hello,
