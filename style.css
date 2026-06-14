@@ -48,6 +48,7 @@ header{
     );
 
     -webkit-background-clip:text;
+    background-clip:text;
     -webkit-text-fill-color:transparent;
 }
 
@@ -137,6 +138,7 @@ nav a:hover{
         #8b5cf6
     );
 
+    background-clip:text;
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
 }
