@@ -266,7 +266,7 @@ target="_blank">
 <div class="payment-section">
     <h2>Scan & Pay</h2>
 
-    <img src="images/payment-qr.png"
+    <img src="qr.jpeg"
          alt="UPI QR Code"
          class="qr-code">
 
@@ -300,12 +300,20 @@ Please share the details.`;
 
 function sendOrder(){
 
-    const phone = "919876543210";
+    const phone = "919345314960";
 
     const message =
 `Hello,
 
-I have completed the payment.
+I have completed the payment.`;
+
+    window.open(
+      `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
+      "_blank"
+    );
+}
+</script>
+
 
 Please verify my payment and confirm the order.`;
 
