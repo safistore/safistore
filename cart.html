@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
-<title>My Cart | Safi Store</title>
+<title>Cart | Safi Store</title>
 
 <link rel="stylesheet"
 href="cart.css">
 
-<link
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
 rel="stylesheet">
 
 </head>
@@ -26,84 +30,68 @@ rel="stylesheet">
     <a href="index.html"
     class="back-btn">
 
-        <i class="fa-solid fa-arrow-left"></i>
-
-        Continue Shopping
+        ← Continue Shopping
 
     </a>
 
 </header>
 
-<main class="cart-page">
+<section class="cart-page">
 
-    <!-- LEFT -->
+    <div class="cart-container">
 
-    <section class="cart-container">
-
-        <h2>
+        <h1>
             Shopping Cart
-        </h2>
+        </h1>
 
         <div id="cartList">
 
+            <!-- Products Load Here -->
+
         </div>
 
-    </section>
+    </div>
 
-    <!-- RIGHT -->
-
-    <aside class="summary">
+    <div class="summary-box">
 
         <h2>
             Order Summary
         </h2>
 
-        <div class="summary-box">
+        <div class="summary-row">
 
-            <div class="row">
+            <span>
+                Total Items
+            </span>
 
-                <span>
-                    Items
-                </span>
-
-                <span
-                id="totalItems">
-
-                    0
-
-                </span>
-
-            </div>
-
-            <div class="row">
-
-                <span>
-                    Total
-                </span>
-
-                <span
-                id="totalPrice">
-
-                    ₹0
-
-                </span>
-
-            </div>
-
-            <hr>
-
-            <button
-            id="paymentBtn">
-
-                Proceed To Payment
-
-            </button>
+            <span id="totalItems">
+                0
+            </span>
 
         </div>
 
-    </aside>
+        <div class="summary-row">
 
-</main>
+            <span>
+                Total Amount
+            </span>
+
+            <span id="totalPrice">
+                ₹0
+            </span>
+
+        </div>
+
+        <button
+        id="paymentBtn">
+
+            Proceed To Payment
+
+        </button>
+
+    </div>
+
+</section>
 
 <script src="cart.js"></script>
 
