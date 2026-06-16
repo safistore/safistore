@@ -42,6 +42,7 @@ header{
         #8b5cf6
     );
 
+    background-clip:text;
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
 }
@@ -226,4 +227,40 @@ header{
         padding:20px;
     }
 
+}
+
+/* NOTIFICATION */
+
+.notification{
+
+    position:fixed;
+
+    top:20px;
+
+    right:20px;
+
+    background:#22c55e;
+
+    color:white;
+
+    padding:15px 20px;
+
+    border-radius:10px;
+
+    font-weight:600;
+
+    z-index:9999;
+
+    opacity:0;
+
+    transform:translateY(-20px);
+
+    transition:.3s;
+}
+
+.notification.show{
+
+    opacity:1;
+
+    transform:translateY(0);
 }
