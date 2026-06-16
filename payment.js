@@ -1,72 +1,67 @@
-let cart =
-JSON.parse(
-localStorage.getItem("cart")
-) || [];
-
-const orderTotal =
-document.getElementById(
-"orderTotal"
-);
-
-const finishPaymentBtn =
 document.getElementById(
 "finishPaymentBtn"
-);
-
-let total = 0;
-
-cart.forEach(item => {
-
-total +=
-item.price *
-item.qty;
-
-});
-
-orderTotal.innerText =
-`₹${total}`;
-
-function copyUPI(){
-
-const upi =
-document.getElementById(
-"upiId"
-).innerText;
-
-navigator.clipboard
-.writeText(upi)
-.then(()=>{
-
-const btn =
-document.getElementById(
-"copyBtn"
-);
-
-btn.innerHTML =
-"Copied ✓";
-
-setTimeout(()=>{
-
-btn.innerHTML =
-"Copy";
-
-},2000);
-
-});
-
-}
-
-finishPaymentBtn
-.addEventListener(
+).addEventListener(
 "click",
 ()=>{
 
-let details = "";
+const name =
+document.getElementById(
+"customerName"
+).value;
+
+const phone =
+document.getElementById(
+"customerPhone"
+).value;
+
+const email =
+document.getElementById(
+"customerEmail"
+).value;
+
+const city =
+document.getElementById(
+"customerCity"
+).value;
+
+const state =
+document.getElementById(
+"customerState"
+).value;
+
+const pincode =
+document.getElementById(
+"customerPincode"
+).value;
+
+const address =
+document.getElementById(
+"customerAddress"
+).value;
+
+if(
+!name ||
+!phone ||
+!city ||
+!state ||
+!pincode ||
+!address
+){
+    alert(
+    "Please fill all shipping details."
+    );
+    return;
+}
+
+let orderDetails = "";
 
 cart.forEach(item=>{
 
-details +=
-`${item.name}
+orderDetails +=
+
+`• ${item.name}
+Size: ${item.size}
+Color: ${item.color}
 Qty: ${item.qty}
 Price: ₹${item.price}
 
@@ -76,21 +71,37 @@ Price: ₹${item.price}
 
 const message =
 
-`Hello,
+`🛍 NEW ORDER
 
-I have completed the payment.
+CUSTOMER DETAILS
 
-Order Details:
+Name: ${name}
 
-${details}
+Phone: ${phone}
 
-Total Amount: ₹${total}
+Email: ${email}
 
-I am attaching my payment screenshot.
+Address:
+${address}
 
-Please verify and confirm my order.
+City: ${city}
 
-Thank you.`;
+State: ${state}
+
+Pincode: ${pincode}
+
+----------------------
+
+ORDER DETAILS
+
+${orderDetails}
+
+----------------------
+
+TOTAL AMOUNT: ₹${total}
+
+Payment Completed.
+Screenshot attached by customer.`;
 
 window.open(
 `https://wa.me/919345314960?text=${encodeURIComponent(message)}`,
@@ -100,12 +111,5 @@ window.open(
 localStorage.removeItem(
 "cart"
 );
-
-setTimeout(()=>{
-
-window.location.href =
-"thankyou.html";
-
-},1500);
 
 });

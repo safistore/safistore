@@ -1,173 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<div class="customer-form">
 
-<meta charset="UTF-8">
+    <input
+    type="text"
+    id="customerName"
+    placeholder="Full Name"
+    required>
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+    <input
+    type="tel"
+    id="customerPhone"
+    placeholder="Mobile Number"
+    required>
 
-<title>Payment | Safi Store</title>
+    <input
+    type="email"
+    id="customerEmail"
+    placeholder="Email Address">
 
-<link rel="stylesheet"
-href="payment.css">
+    <input
+    type="text"
+    id="customerCity"
+    placeholder="City"
+    required>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-rel="stylesheet">
+    <input
+    type="text"
+    id="customerState"
+    placeholder="State"
+    required>
 
-</head>
-<body>
+    <input
+    type="text"
+    id="customerPincode"
+    placeholder="Pincode"
+    required>
 
-<header>
+    <textarea
+    id="customerAddress"
+    placeholder="Full Shipping Address"
+    rows="4"
+    required></textarea>
 
-    <div class="logo">
-        SAFI STORE
-    </div>
-
-    <a href="cart.html"
-    class="back-btn">
-
-        ← Back To Cart
-
-    </a>
-
-</header>
-
-<section class="payment-page">
-
-    <div class="payment-card">
-
-        <h1>
-            Complete Your Payment
-        </h1>
-
-        <p class="subtitle">
-            Scan the QR code or copy the UPI ID below
-        </p>
-
-        <!-- QR CODE -->
-
-        <div class="qr-container">
-
-            <img
-            src="qr.jpeg"
-            alt="Payment QR"
-            class="qr-image">
-
-        </div>
-
-        <!-- UPI -->
-
-        <div class="upi-box">
-
-            <span>
-                UPI ID
-            </span>
-
-            <div class="upi-copy">
-
-                <h3 id="upiId">
-                    9345314960@axl
-                </h3>
-
-                <button
-                id="copyBtn"
-                onclick="copyUPI()">
-
-                    Copy
-
-                </button>
-
-            </div>
-
-        </div>
-
-        <!-- TOTAL -->
-
-        <div class="amount-box">
-
-            <span>
-                Order Total
-            </span>
-
-            <h2 id="orderTotal">
-                ₹0
-            </h2>
-
-        </div>
-
-        <!-- CUSTOMER DETAILS -->
-
-        <div class="customer-form">
-
-            <input
-            type="text"
-            id="customerName"
-            placeholder="Enter Your Name"
-            required>
-
-            <input
-            type="tel"
-            id="customerPhone"
-            placeholder="Enter Your Phone Number"
-            required>
-
-            <textarea
-            id="customerAddress"
-            placeholder="Enter Delivery Address"
-            rows="4"
-            required></textarea>
-
-        </div>
-
-        <!-- INSTRUCTIONS -->
-
-        <div class="instructions">
-
-            <h4>
-                Instructions
-            </h4>
-
-            <ul>
-
-                <li>
-                    Scan the QR Code.
-                </li>
-
-                <li>
-                    Complete the payment.
-                </li>
-
-                <li>
-                    Take a screenshot.
-                </li>
-
-                <li>
-                    Click "Finish Payment".
-                </li>
-
-                <li>
-                    Send screenshot on WhatsApp.
-                </li>
-
-            </ul>
-
-        </div>
-
-        <!-- BUTTON -->
-
-        <button
-        id="finishPaymentBtn">
-
-            Finish Payment
-
-        </button>
-
-    </div>
-
-</section>
-
-<script src="payment.js"></script>
-
-</body>
-</html>
+</div>
