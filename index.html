@@ -1,31 +1,42 @@
 <div class="product-card">
 
-    <img src="bracelet.jpeg" alt="Bracelet">
+    <img src="products/tshirt.jpg" alt="Premium T-Shirt">
 
-    <h3>Premium Bracelet</h3>
+    <h3>Premium T-Shirt</h3>
 
-    <p>Stylish and comfortable bracelet.</p>
+    <p>
+        Comfortable cotton T-shirt for daily wear.
+    </p>
 
-    <h4>₹199</h4>
+    <h4>₹599</h4>
 
-    <!-- Size Variation -->
+    <div class="variation">
 
-    <select id="size1">
-        <option value="S">Size S</option>
-        <option value="M">Size M</option>
-        <option value="L">Size L</option>
-        <option value="XL">Size XL</option>
-    </select>
+        <label>Size</label>
 
-    <!-- Colour Variation -->
+        <select id="size1">
+            <option value="S">Small</option>
+            <option value="M">Medium</option>
+            <option value="L">Large</option>
+            <option value="XL">XL</option>
+        </select>
 
-    <select id="color1">
-        <option value="Black">Black</option>
-        <option value="Blue">Blue</option>
-        <option value="Red">Red</option>
-    </select>
+    </div>
 
-    <button onclick="addProduct1()">
+    <div class="variation">
+
+        <label>Color</label>
+
+        <select id="color1">
+            <option value="Black">Black</option>
+            <option value="Blue">Blue</option>
+            <option value="Red">Red</option>
+            <option value="White">White</option>
+        </select>
+
+    </div>
+
+    <button onclick="addVariationProduct()">
         Add To Cart
     </button>
 
