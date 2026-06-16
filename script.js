@@ -1,216 +1,44 @@
-// CART STORAGE
+function addVariationProduct(){
 
-let cart =
-JSON.parse(
-localStorage.getItem("cart")
-) || [];
+    const size =
+    document.getElementById("size1").value;
 
-// ELEMENTS
+    const color =
+    document.getElementById("color1").value;
 
-const cartBtn =
-document.getElementById("cartBtn");
+    const product = {
 
-const closeCart =
-document.getElementById("closeCart");
+        id:1,
 
-const cartSidebar =
-document.getElementById("cartSidebar");
+        name:"Premium T-Shirt",
 
-const cartItems =
-document.getElementById("cartItems");
+        price:599,
 
-const cartCount =
-document.getElementById("cartCount");
+        image:"products/tshirt.jpg",
 
-const cartTotal =
-document.getElementById("cartTotal");
+        qty:1,
 
-const goToCart =
-document.getElementById("goToCart");
+        size:size,
 
-// OPEN SIDEBAR
+        color:color
 
-cartBtn.addEventListener(
-"click",
-() => {
+    };
 
-    cartSidebar.classList.add(
-    "active"
-    );
+    let cart =
+    JSON.parse(
+    localStorage.getItem("cart")
+    ) || [];
 
-}
-);
-
-// CLOSE SIDEBAR
-
-closeCart.addEventListener(
-"click",
-() => {
-
-    cartSidebar.classList.remove(
-    "active"
-    );
-
-}
-);
-
-// ADD PRODUCT
-
-function addToCart(
-id,
-name,
-price,
-image
-){
-
-    const existing =
-    cart.find(
-    item => item.id === id
-    );
-
-    if(existing){
-
-        existing.qty++;
-
-    }else{
-
-        cart.push({
-
-            id,
-            name,
-            price,
-            image,
-            qty:1
-
-        });
-
-    }
-
-    saveCart();
-
-    renderCart();
-
-}
-
-// SAVE CART
-
-function saveCart(){
+    cart.push(product);
 
     localStorage.setItem(
     "cart",
     JSON.stringify(cart)
     );
 
+    alert(
+    "Added To Cart!"
+    );
+
+    renderCart();
 }
-
-// UPDATE CART COUNT
-
-function updateCartCount(){
-
-    let count = 0;
-
-    cart.forEach(item => {
-
-        count += item.qty;
-
-    });
-
-    cartCount.textContent =
-    count;
-
-}
-
-// CALCULATE TOTAL
-
-function calculateTotal(){
-
-    let total = 0;
-
-    cart.forEach(item => {
-
-        total +=
-        item.price *
-        item.qty;
-
-    });
-
-    cartTotal.textContent =
-    total;
-
-}
-
-// RENDER SIDEBAR CART
-
-function renderCart(){
-
-    cartItems.innerHTML = "";
-
-    if(cart.length === 0){
-
-        cartItems.innerHTML =
-
-        `
-        <p style="
-        text-align:center;
-        color:#94a3b8;
-        ">
-        Cart is empty
-        </p>
-        `;
-
-    }
-
-    cart.forEach(item => {
-
-        cartItems.innerHTML +=
-
-        `
-        <div class="cart-item">
-
-            <img
-            src="${item.image}"
-            alt="${item.name}">
-
-            <div class="cart-details">
-
-                <h4>
-                ${item.name}
-                </h4>
-
-                <p>
-                ₹${item.price}
-                </p>
-
-                <small>
-                Qty:
-                ${item.qty}
-                </small>
-
-            </div>
-
-        </div>
-        `;
-
-    });
-
-    updateCartCount();
-
-    calculateTotal();
-
-}
-
-// GO TO CART PAGE
-
-goToCart.addEventListener(
-"click",
-() => {
-
-    window.location.href =
-    "cart.html";
-
-}
-);
-
-// INITIAL LOAD
-
-renderCart();
