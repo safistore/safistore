@@ -1,330 +1,350 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Products - SAFI STORE</title>
 
-<link rel="stylesheet" href="style.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
+<link rel="stylesheet" href="products.css">
 </head>
 
 <body>
 
 <header>
 
-    <div class="brand">
+<div class="brand">
 
-        <img
-        src="safi.png"
-        alt="SAFI STORE"
-        class="logo-img">
+<img src="safi.png" class="logo">
 
-        <h2 class="site-title">
-            SAFI STORE
-        </h2>
+<h2>SAFI STORE</h2>
 
-    </div>
+</div>
 
-    <div class="search-container">
+<div class="search-box">
 
-        <input
-        type="text"
-        id="searchInput"
-        placeholder="🔍 Search Products..."
-        onkeyup="searchProducts()">
+<input
+type="text"
+id="searchInput"
+placeholder="🔍 Search Products..."
+onkeyup="searchProducts()">
 
-    </div>
+</div>
 
-    <nav>
+<nav>
 
-        <a href="index.html">Home</a>
+<a href="index.html">Home</a>
 
-        <a href="products.html">Products</a>
+<a href="products.html">Products</a>
 
-        <a href="cart.html">Cart</a>
+<a href="cart.html" class="cart-btn">
 
-    </nav>
+🛒 Cart (<span id="cartCount">0</span>)
+
+</a>
+
+</nav>
 
 </header>
 
-<section class="hero">
-
-    <h1>Our Products</h1>
-
-    <p>
-        Premium Quality Products At Affordable Prices
-    </p>
-
-</section>
-
 <section class="products">
 
-    <!-- PRODUCT 1 -->
+<!-- PRODUCT 1 -->
 
-    <div class="product-card">
+<div class="product-card">
 
-        <img src="products/watch.jpg" alt="Watch">
+<img src="products/watch.jpg">
 
-        <h3>Premium Watch</h3>
+<h3>Premium Watch</h3>
 
-        <p>Luxury waterproof wrist watch.</p>
+<p>Luxury waterproof wrist watch.</p>
 
-        <h4>₹999</h4>
+<h4>₹999</h4>
 
-        <button onclick="addProduct(
-        1,
-        'Premium Watch',
-        999,
-        'products/watch.jpg'
-        )">
+<select id="size1">
+<option>Small</option>
+<option>Medium</option>
+<option>Large</option>
+</select>
 
-        Add To Cart
+<select id="color1">
+<option>Black</option>
+<option>Silver</option>
+<option>Gold</option>
+</select>
 
-        </button>
+<button onclick="addProduct(1,'Premium Watch',999,'products/watch.jpg','size1','color1')">
 
-    </div>
+Add To Cart
 
-    <!-- PRODUCT 2 -->
+</button>
 
-    <div class="product-card">
+</div>
 
-        <img src="products/bag.jpg" alt="Bag">
+<!-- PRODUCT 2 -->
 
-        <h3>Travel Bag</h3>
+<div class="product-card">
 
-        <p>Premium quality travel backpack.</p>
+<img src="products/bag.jpg">
 
-        <h4>₹1299</h4>
+<h3>Travel Bag</h3>
 
-        <button onclick="addProduct(
-        2,
-        'Travel Bag',
-        1299,
-        'products/bag.jpg'
-        )">
+<p>Premium travel backpack.</p>
 
-        Add To Cart
+<h4>₹1299</h4>
 
-        </button>
+<select id="size2">
+<option>Small</option>
+<option>Medium</option>
+<option>Large</option>
+</select>
 
-    </div>
+<select id="color2">
+<option>Black</option>
+<option>Blue</option>
+</select>
 
-    <!-- PRODUCT 3 -->
+<button onclick="addProduct(2,'Travel Bag',1299,'products/bag.jpg','size2','color2')">
 
-    <div class="product-card">
+Add To Cart
 
-        <img src="products/headphone.jpg" alt="Headphone">
+</button>
 
-        <h3>Wireless Headphone</h3>
+</div>
 
-        <p>Noise cancelling bluetooth headphone.</p>
+<!-- PRODUCT 3 -->
 
-        <h4>₹1999</h4>
+<div class="product-card">
 
-        <button onclick="addProduct(
-        3,
-        'Wireless Headphone',
-        1999,
-        'products/headphone.jpg'
-        )">
+<img src="products/headphone.jpg">
 
-        Add To Cart
+<h3>Wireless Headphone</h3>
 
-        </button>
+<p>Bluetooth Noise Cancelling.</p>
 
-    </div>
+<h4>₹1999</h4>
 
-    <!-- PRODUCT 4 -->
+<select id="size3">
+<option>Standard</option>
+</select>
 
-    <div class="product-card">
+<select id="color3">
+<option>Black</option>
+<option>White</option>
+</select>
 
-        <img src="products/shoes.jpg" alt="Shoes">
+<button onclick="addProduct(3,'Wireless Headphone',1999,'products/headphone.jpg','size3','color3')">
 
-        <h3>Running Shoes</h3>
+Add To Cart
 
-        <p>Comfortable sports running shoes.</p>
+</button>
 
-        <h4>₹1499</h4>
+</div>
 
-        <button onclick="addProduct(
-        4,
-        'Running Shoes',
-        1499,
-        'products/shoes.jpg'
-        )">
+<!-- PRODUCT 4 -->
 
-        Add To Cart
+<div class="product-card">
 
-        </button>
+<img src="products/shoes.jpg">
 
-    </div>
+<h3>Running Shoes</h3>
 
-    <!-- PRODUCT 5 -->
+<p>Comfort sports shoes.</p>
 
-    <div class="product-card">
+<h4>₹1499</h4>
 
-        <img src="products/perfume.jpg" alt="Perfume">
+<select id="size4">
+<option>7</option>
+<option>8</option>
+<option>9</option>
+<option>10</option>
+</select>
 
-        <h3>Luxury Perfume</h3>
+<select id="color4">
+<option>Black</option>
+<option>White</option>
+</select>
 
-        <p>Long lasting premium fragrance.</p>
+<button onclick="addProduct(4,'Running Shoes',1499,'products/shoes.jpg','size4','color4')">
 
-        <h4>₹799</h4>
+Add To Cart
 
-        <button onclick="addProduct(
-        5,
-        'Luxury Perfume',
-        799,
-        'products/perfume.jpg'
-        )">
+</button>
 
-        Add To Cart
+</div>
 
-        </button>
+<!-- PRODUCT 5 -->
 
-    </div>
+<div class="product-card">
 
-    <!-- PRODUCT 6 -->
+<img src="products/perfume.jpg">
 
-    <div class="product-card">
+<h3>Luxury Perfume</h3>
 
-        <img src="products/tshirt.jpg" alt="T-Shirt">
+<p>Long lasting fragrance.</p>
 
-        <h3>Premium T-Shirt</h3>
+<h4>₹799</h4>
 
-        <p>Soft cotton round neck t-shirt.</p>
+<select id="size5">
+<option>50ml</option>
+<option>100ml</option>
+</select>
 
-        <h4>₹499</h4>
+<select id="color5">
+<option>Classic</option>
+</select>
 
-        <button onclick="addProduct(
-        6,
-        'Premium T-Shirt',
-        499,
-        'products/tshirt.jpg'
-        )">
+<button onclick="addProduct(5,'Luxury Perfume',799,'products/perfume.jpg','size5','color5')">
 
-        Add To Cart
+Add To Cart
 
-        </button>
+</button>
 
-    </div>
+</div>
 
-    <!-- PRODUCT 7 -->
+<!-- PRODUCT 6 -->
 
-    <div class="product-card">
+<div class="product-card">
 
-        <img src="products/sunglass.jpg" alt="Sunglass">
+<img src="products/tshirt.jpg">
 
-        <h3>Stylish Sunglass</h3>
+<h3>Premium T-Shirt</h3>
 
-        <p>UV protected premium sunglass.</p>
+<h4>₹499</h4>
 
-        <h4>₹599</h4>
+<select id="size6">
+<option>S</option>
+<option>M</option>
+<option>L</option>
+<option>XL</option>
+</select>
 
-        <button onclick="addProduct(
-        7,
-        'Stylish Sunglass',
-        599,
-        'products/sunglass.jpg'
-        )">
+<select id="color6">
+<option>Black</option>
+<option>White</option>
+<option>Blue</option>
+</select>
 
-        Add To Cart
+<button onclick="addProduct(6,'Premium T-Shirt',499,'products/tshirt.jpg','size6','color6')">
 
-        </button>
+Add To Cart
 
-    </div>
+</button>
 
-    <!-- PRODUCT 8 -->
+</div>
 
-    <div class="product-card">
+<!-- PRODUCT 7 -->
 
-        <img src="products/wallet.jpg" alt="Wallet">
+<div class="product-card">
 
-        <h3>Leather Wallet</h3>
+<img src="products/sunglass.jpg">
 
-        <p>Premium leather wallet.</p>
+<h3>Stylish Sunglass</h3>
 
-        <h4>₹699</h4>
+<h4>₹599</h4>
 
-        <button onclick="addProduct(
-        8,
-        'Leather Wallet',
-        699,
-        'products/wallet.jpg'
-        )">
+<select id="size7">
+<option>Standard</option>
+</select>
 
-        Add To Cart
+<select id="color7">
+<option>Black</option>
+<option>Brown</option>
+</select>
 
-        </button>
+<button onclick="addProduct(7,'Stylish Sunglass',599,'products/sunglass.jpg','size7','color7')">
 
-    </div>
+Add To Cart
 
-    <!-- PRODUCT 9 -->
+</button>
 
-    <div class="product-card">
+</div>
 
-        <img src="products/cap.jpg" alt="Cap">
+<!-- PRODUCT 8 -->
 
-        <h3>Fashion Cap</h3>
+<div class="product-card">
 
-        <p>Modern stylish cap.</p>
+<img src="products/wallet.jpg">
 
-        <h4>₹299</h4>
+<h3>Leather Wallet</h3>
 
-        <button onclick="addProduct(
-        9,
-        'Fashion Cap',
-        299,
-        'products/cap.jpg'
-        )">
+<h4>₹699</h4>
 
-        Add To Cart
+<select id="size8">
+<option>Standard</option>
+</select>
 
-        </button>
+<select id="color8">
+<option>Brown</option>
+<option>Black</option>
+</select>
 
-    </div>
+<button onclick="addProduct(8,'Leather Wallet',699,'products/wallet.jpg','size8','color8')">
 
-    <!-- PRODUCT 10 -->
+Add To Cart
 
-    <div class="product-card">
+</button>
 
-        <img src="products/bottle.jpg" alt="Bottle">
+</div>
 
-        <h3>Water Bottle</h3>
+<!-- PRODUCT 9 -->
 
-        <p>Stainless steel insulated bottle.</p>
+<div class="product-card">
 
-        <h4>₹249</h4>
+<img src="products/cap.jpg">
 
-        <button onclick="addProduct(
-        10,
-        'Water Bottle',
-        249,
-        'products/bottle.jpg'
-        )">
+<h3>Fashion Cap</h3>
 
-        Add To Cart
+<h4>₹299</h4>
 
-        </button>
+<select id="size9">
+<option>Standard</option>
+</select>
 
-    </div>
+<select id="color9">
+<option>Black</option>
+<option>Blue</option>
+</select>
+
+<button onclick="addProduct(9,'Fashion Cap',299,'products/cap.jpg','size9','color9')">
+
+Add To Cart
+
+</button>
+
+</div>
+
+<!-- PRODUCT 10 -->
+
+<div class="product-card">
+
+<img src="products/bottle.jpg">
+
+<h3>Water Bottle</h3>
+
+<h4>₹249</h4>
+
+<select id="size10">
+<option>500ml</option>
+<option>750ml</option>
+<option>1L</option>
+</select>
+
+<select id="color10">
+<option>Black</option>
+<option>Silver</option>
+</select>
+
+<button onclick="addProduct(10,'Water Bottle',249,'products/bottle.jpg','size10','color10')">
+
+Add To Cart
+
+</button>
+
+</div>
 
 </section>
 
-<footer>
-
-    <p>
-        © 2025 SAFI STORE. All Rights Reserved.
-    </p>
-
-</footer>
-
-<script src="script.js"></script>
+<script src="products.js"></script>
 
 </body>
 </html>
