@@ -1,199 +1,224 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAFI STORE</title>
 
-<title>SAFI STORE</title>
+    <link rel="stylesheet" href="style.css">
 
-<link rel="stylesheet" href="style.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<!-- HEADER -->
+    <!-- HEADER -->
 
-<header>
+    <header>
 
-    <div class="brand">
+        <div class="brand">
 
-        <img
-        src="safi.png"
-        alt="SAFI STORE"
-        class="logo-img">
+            <img src="safi.png"
+                 alt="SAFI STORE"
+                 class="logo-img">
 
-        <h2 class="site-title">
-            SAFI STORE
-        </h2>
+            <h2 class="site-title">
+                SAFI STORE
+            </h2>
 
-    </div>
+        </div>
 
-    <a href="cart.html" class="cart-btn">
-        🛒 Cart
-    </a>
+        <a href="cart.html" class="cart-btn">
+            🛒 Cart
+        </a>
 
-</header>
+    </header>
 
-<!-- HERO -->
+    <!-- HERO -->
 
-<section class="hero">
+    <section class="hero">
 
-    <h1>
-        Welcome To SAFI STORE
-    </h1>
-
-    <p>
-        Premium Products • Fast Delivery • Secure Shopping
-    </p>
-
-</section>
-
-<!-- SEARCH -->
-
-<div class="search-container">
-
-    <input
-    type="text"
-    id="searchInput"
-    placeholder="🔍 Search Products..."
-    onkeyup="searchProducts()">
-
-</div>
-
-<!-- PRODUCTS -->
-
-<section class="products">
-
-    <!-- PRODUCT 1 -->
-
-    <div class="product-card">
-
-        <img
-        src="products/watch.jpg"
-        alt="Watch">
-
-        <h3>Premium Watch</h3>
+        <h1>
+            Welcome To SAFI STORE
+        </h1>
 
         <p>
-            Luxury waterproof wrist watch.
+            Premium Products • Fast Delivery • Secure Shopping
         </p>
 
-        <h4>₹999</h4>
+    </section>
 
-        <select id="size1">
-            <option>Standard</option>
-        </select>
+    <!-- SEARCH -->
 
-        <select id="color1">
-            <option>Black</option>
-            <option>Silver</option>
-            <option>Gold</option>
-        </select>
+    <div class="search-container">
 
-        <button onclick="addProduct(
-        1,
-        'Premium Watch',
-        999,
-        'products/watch.jpg',
-        'size1',
-        'color1'
-        )">
-
-            Add To Cart
-
-        </button>
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="🔍 Search Products..."
+            onkeyup="searchProducts()">
 
     </div>
 
-    <!-- PRODUCT 2 -->
+    <!-- PRODUCTS -->
 
-    <div class="product-card">
+    <section class="products">
 
-        <img
-        src="products/bag.jpg"
-        alt="Bag">
+        <!-- PRODUCT 1 -->
 
-        <h3>Travel Bag</h3>
+        <div class="product-card">
+
+            <img src="products/watch.jpg" alt="Watch">
+
+            <h3>Premium Watch</h3>
+
+            <p>Luxury waterproof wrist watch.</p>
+
+            <h4>₹999</h4>
+
+            <select id="size1">
+                <option>Standard</option>
+            </select>
+
+            <select id="color1">
+                <option>Black</option>
+                <option>Silver</option>
+                <option>Gold</option>
+            </select>
+
+            <button onclick="addProduct(
+                1,
+                'Premium Watch',
+                999,
+                'products/watch.jpg',
+                'size1',
+                'color1'
+            )">
+                Add To Cart
+            </button>
+
+        </div>
+
+        <!-- PRODUCT 2 -->
+
+        <div class="product-card">
+
+            <img src="products/bag.jpg" alt="Bag">
+
+            <h3>Travel Bag</h3>
+
+            <p>Premium quality travel backpack.</p>
+
+            <h4>₹1299</h4>
+
+            <select id="size2">
+                <option>Small</option>
+                <option>Medium</option>
+                <option>Large</option>
+            </select>
+
+            <select id="color2">
+                <option>Black</option>
+                <option>Blue</option>
+            </select>
+
+            <button onclick="addProduct(
+                2,
+                'Travel Bag',
+                1299,
+                'products/bag.jpg',
+                'size2',
+                'color2'
+            )">
+                Add To Cart
+            </button>
+
+        </div>
+
+        <!-- PRODUCT 3 -->
+
+        <div class="product-card">
+
+            <img src="products/headphone.jpg" alt="Headphone">
+
+            <h3>Wireless Headphone</h3>
+
+            <p>Bluetooth Noise Cancelling Headphone.</p>
+
+            <h4>₹1999</h4>
+
+            <select id="size3">
+                <option>Standard</option>
+            </select>
+
+            <select id="color3">
+                <option>Black</option>
+                <option>White</option>
+            </select>
+
+            <button onclick="addProduct(
+                3,
+                'Wireless Headphone',
+                1999,
+                'products/headphone.jpg',
+                'size3',
+                'color3'
+            )">
+                Add To Cart
+            </button>
+
+        </div>
+
+        <!-- PRODUCT 4 -->
+
+        <div class="product-card">
+
+            <img src="products/bottle.jpg" alt="Bottle">
+
+            <h3>Water Bottle</h3>
+
+            <p>Premium Stainless Steel Bottle.</p>
+
+            <h4>₹249</h4>
+
+            <select id="size4">
+                <option>500ml</option>
+                <option>750ml</option>
+                <option>1L</option>
+            </select>
+
+            <select id="color4">
+                <option>Black</option>
+                <option>Silver</option>
+            </select>
+
+            <button onclick="addProduct(
+                4,
+                'Water Bottle',
+                249,
+                'products/bottle.jpg',
+                'size4',
+                'color4'
+            )">
+                Add To Cart
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
 
         <p>
-            Premium quality travel backpack.
+            © 2025 SAFI STORE. All Rights Reserved.
         </p>
 
-        <h4>₹1299</h4>
+    </footer>
 
-        <select id="size2">
-            <option>Small</option>
-            <option>Medium</option>
-            <option>Large</option>
-        </select>
-
-        <select id="color2">
-            <option>Black</option>
-            <option>Blue</option>
-        </select>
-
-        <button onclick="addProduct(
-        2,
-        'Travel Bag',
-        1299,
-        'products/bag.jpg',
-        'size2',
-        'color2'
-        )">
-
-            Add To Cart
-
-        </button>
-
-    </div>
-
-    <!-- PRODUCT 3 -->
-
-    <div class="product-card">
-
-        <img
-        src="products/headphone.jpg"
-        alt="Headphone">
-
-        <h3>Wireless Headphone</h3>
-
-        <p>
-            Noise cancelling Bluetooth headphone.
-        </p>
-
-        <h4>₹1999</h4>
-
-        <select id="size3">
-            <option>Standard</option>
-        </select>
-
-        <select id="color3">
-            <option>Black</option>
-            <option>White</option>
-        </select>
-
-        <button onclick="addProduct(
-        3,
-        'Wireless Headphone',
-        1999,
-        'products/headphone.jpg',
-        'size3',
-        'color3'
-        )">
-
-            Add To Cart
-
-        </button>
-
-    </div>
-
-    <!-- ADD PRODUCTS 4–10 HERE -->
-
-</section>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
 </html>
