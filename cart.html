@@ -1,89 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<title>Cart - SAFI STORE</title>
 
-<title>Cart | Safi Store</title>
+<link rel="stylesheet" href="cart.css">
 
-<link rel="stylesheet"
-href="cart.css">
-
-<link rel="preconnect"
-href="https://fonts.googleapis.com">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
 <header>
 
-    <div class="logo">
-        SAFI STORE
+    <div class="brand">
+
+        <img
+        src="safi.png"
+        alt="SAFI STORE"
+        class="logo-img">
+
+        <h2 class="site-title">
+            SAFI STORE
+        </h2>
+
     </div>
 
-    <a href="index.html"
-    class="back-btn">
-
+    <a href="index.html" class="back-btn">
         ← Continue Shopping
-
     </a>
 
 </header>
 
-<section class="cart-page">
+<section class="cart-section">
 
-    <div class="cart-container">
+    <h1>Your Shopping Cart</h1>
 
-        <h1>
-            Shopping Cart
-        </h1>
+    <p class="subtitle">
+        Review your selected products before payment.
+    </p>
 
-        <div id="cartList">
+    <div id="cartContainer">
 
-            <!-- Products Load Here -->
-
-        </div>
+        <!-- PRODUCTS WILL LOAD HERE -->
 
     </div>
 
-    <div class="summary-box">
-
-        <h2>
-            Order Summary
-        </h2>
+    <div class="cart-summary">
 
         <div class="summary-row">
 
-            <span>
-                Total Items
-            </span>
+            <span>Total Amount</span>
 
-            <span id="totalItems">
-                0
-            </span>
-
-        </div>
-
-        <div class="summary-row">
-
-            <span>
-                Total Amount
-            </span>
-
-            <span id="totalPrice">
+            <h2 id="cartTotal">
                 ₹0
-            </span>
+            </h2>
 
         </div>
 
         <button
-        id="paymentBtn">
+        id="checkoutBtn"
+        onclick="goToPayment()">
 
             Proceed To Payment
 
