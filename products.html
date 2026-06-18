@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Products - SAFI STORE</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<header>
+
+    <div class="brand">
+
+        <img src="safi.png"
+        class="logo-img">
+
+        <h2 class="site-title">
+            SAFI STORE
+        </h2>
+
+    </div>
+
+    <nav>
+
+        <a href="index.html">Home</a>
+
+        <a href="products.html">Products</a>
+
+        <a href="cart.html">Cart</a>
+
+    </nav>
+
+</header>
+
+<section class="hero">
+
+    <h1>Our Products</h1>
+
+    <p>Choose your favourite products</p>
+
+</section>
+
+<div class="search-container">
+
+    <input
+    type="text"
+    id="searchInput"
+    placeholder="Search Products..."
+    onkeyup="searchProducts()">
+
+</div>
+
+<section class="products">
+
+    <!-- Product 1 -->
+
+    <div class="product-card">
+
+        <img src="products/watch.jpg">
+
+        <h3>Premium Watch</h3>
+
+        <p>Luxury waterproof watch</p>
+
+        <h4>₹999</h4>
+
+        <button onclick="addProduct(
+        1,
+        'Premium Watch',
+        999,
+        'products/watch.jpg',
+        'size1',
+        'color1'
+        )">
+
+        Add To Cart
+
+        </button>
+
+    </div>
+
+    <!-- Add remaining products here -->
+
+</section>
+
+<script src="script.js"></script>
+
+</body>
+</html>
