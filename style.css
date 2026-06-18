@@ -214,3 +214,22 @@ nav a{
 nav a:hover{
     color:#3b82f6;
 }
+
+.shop-btn{
+
+    display:inline-block;
+
+    margin-top:20px;
+
+    padding:14px 25px;
+
+    background:#2563eb;
+
+    color:white;
+
+    text-decoration:none;
+
+    border-radius:10px;
+
+    font-weight:600;
+}
