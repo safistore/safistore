@@ -5,21 +5,90 @@ JSON.parse(
 localStorage.getItem("cart")
 ) || [];
 
-// CALCULATE TOTAL
+// TOTAL
 
 let total = 0;
 
-cart.forEach(item => {
+// ELEMENTS
 
-    total += item.price * item.qty;
-
-});
-
-// SHOW TOTAL
-
+const orderTotal =
 document.getElementById(
 "orderTotal"
-).innerText = "₹" + total;
+);
+
+const productSummary =
+document.getElementById(
+"productSummary"
+);
+
+// SHOW PRODUCTS
+
+function loadOrderSummary(){
+
+    productSummary.innerHTML = "";
+
+    if(cart.length === 0){
+
+        productSummary.innerHTML =
+        "<p>No products found.</p>";
+
+        orderTotal.innerText = "₹0";
+
+        return;
+    }
+
+    cart.forEach(item=>{
+
+        const subtotal =
+        item.price * item.qty;
+
+        total += subtotal;
+
+        productSummary.innerHTML +=
+
+        `
+        <div class="summary-item">
+
+            <div>
+
+                <strong>
+                ${item.name}
+                </strong>
+
+                <br>
+
+                Size:
+                ${item.size}
+
+                <br>
+
+                Color:
+                ${item.color}
+
+                <br>
+
+                Qty:
+                ${item.qty}
+
+            </div>
+
+            <div>
+
+                ₹${subtotal}
+
+            </div>
+
+        </div>
+        `;
+
+    });
+
+    orderTotal.innerText =
+    `₹${total}`;
+
+}
+
+loadOrderSummary();
 
 // COPY UPI
 
@@ -50,7 +119,7 @@ function copyUPI(){
 
 }
 
-// FINISH PAYMENT
+// COMPLETE PAYMENT
 
 document.getElementById(
 "finishPaymentBtn"
@@ -73,6 +142,11 @@ function(){
     "customerEmail"
     ).value.trim();
 
+    const address =
+    document.getElementById(
+    "customerAddress"
+    ).value.trim();
+
     const city =
     document.getElementById(
     "customerCity"
@@ -88,18 +162,15 @@ function(){
     "customerPincode"
     ).value.trim();
 
-    const address =
-    document.getElementById(
-    "customerAddress"
-    ).value.trim();
+    // VALIDATION
 
     if(
         !name ||
         !phone ||
+        !address ||
         !city ||
         !state ||
-        !pincode ||
-        !address
+        !pincode
     ){
 
         alert(
@@ -109,27 +180,33 @@ function(){
         return;
     }
 
-    let orderDetails = "";
+    // ORDER DETAILS
 
-    cart.forEach(item => {
+    let orderText = "";
 
-        orderDetails +=
+    cart.forEach(item=>{
 
-`Product: ${item.name}
+        orderText +=
+
+`📦 ${item.name}
 Size: ${item.size}
 Color: ${item.color}
-Quantity: ${item.qty}
+Qty: ${item.qty}
 Price: ₹${item.price}
 
 `;
 
     });
 
-    const message =
+    // WHATSAPP MESSAGE
 
-`🛍 NEW ORDER
+    const whatsappMessage =
 
-CUSTOMER DETAILS
+`🛍 NEW ORDER RECEIVED
+
+━━━━━━━━━━━━━━
+
+👤 CUSTOMER DETAILS
 
 Name: ${name}
 
@@ -146,34 +223,49 @@ State: ${state}
 
 Pincode: ${pincode}
 
-----------------------
+━━━━━━━━━━━━━━
 
-ORDER DETAILS
+📦 ORDER DETAILS
 
-${orderDetails}
+${orderText}
 
-----------------------
+━━━━━━━━━━━━━━
 
-TOTAL AMOUNT: ₹${total}
+💰 TOTAL AMOUNT
 
-Payment Completed.
+₹${total}
 
-Customer will send payment screenshot.`;
+━━━━━━━━━━━━━━
+
+✅ PAYMENT COMPLETED
+
+Customer will send payment screenshot after opening WhatsApp.
+
+Please verify payment and process shipment.`;
+
+    // OPEN WHATSAPP
 
     window.open(
-    `https://wa.me/919345314960?text=${encodeURIComponent(message)}`,
+
+    `https://wa.me/919345314960?text=${encodeURIComponent(whatsappMessage)}`,
+
     "_blank"
+
     );
+
+    // CLEAR CART
 
     localStorage.removeItem(
     "cart"
     );
+
+    // REDIRECT
 
     setTimeout(()=>{
 
         window.location.href =
         "thankyou.html";
 
-    },1000);
+    },1500);
 
 });
