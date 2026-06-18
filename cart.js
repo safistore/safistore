@@ -1,139 +1,51 @@
-// LOAD CART
-
 let cart =
 JSON.parse(
 localStorage.getItem("cart")
 ) || [];
 
-// ELEMENTS
-
-const cartList =
+const cartContainer =
 document.getElementById(
-"cartList"
+"cartContainer"
 );
 
-const totalItems =
+const cartTotal =
 document.getElementById(
-"totalItems"
+"cartTotal"
 );
 
-const totalPrice =
-document.getElementById(
-"totalPrice"
-);
+function loadCart(){
 
-const paymentBtn =
-document.getElementById(
-"paymentBtn"
-);
-
-// SAVE CART
-
-function saveCart(){
-
-    localStorage.setItem(
-    "cart",
-    JSON.stringify(cart)
-    );
-
-}
-
-// INCREASE QUANTITY
-
-function increaseQty(index){
-
-    cart[index].qty++;
-
-    saveCart();
-
-    renderCart();
-
-}
-
-// DECREASE QUANTITY
-
-function decreaseQty(index){
-
-    if(cart[index].qty > 1){
-
-        cart[index].qty--;
-
-    }else{
-
-        cart.splice(index,1);
-
-    }
-
-    saveCart();
-
-    renderCart();
-
-}
-
-// DELETE ITEM
-
-function deleteItem(index){
-
-    if(confirm(
-    "Remove this item from cart?"
-    )){
-
-        cart.splice(index,1);
-
-        saveCart();
-
-        renderCart();
-
-    }
-
-}
-
-// RENDER CART
-
-function renderCart(){
-
-    cartList.innerHTML = "";
+    cartContainer.innerHTML = "";
 
     let total = 0;
 
-    let itemCount = 0;
-
     if(cart.length === 0){
 
-        cartList.innerHTML =
+        cartContainer.innerHTML =
 
         `
         <div class="empty-cart">
 
-            <h2>
-            🛒 Your Cart Is Empty
-            </h2>
+            <h2>Your Cart Is Empty</h2>
 
             <p>
-            Add some products to continue shopping.
+            Add products from the store.
             </p>
 
         </div>
         `;
 
-        totalItems.textContent = "0";
-
-        totalPrice.textContent = "₹0";
+        cartTotal.innerText = "₹0";
 
         return;
-
     }
 
     cart.forEach((item,index)=>{
 
         total +=
-        item.price *
-        item.qty;
+        item.price * item.qty;
 
-        itemCount +=
-        item.qty;
-
-        cartList.innerHTML +=
+        cartContainer.innerHTML +=
 
         `
         <div class="cart-item">
@@ -144,9 +56,7 @@ function renderCart(){
 
             <div class="item-details">
 
-                <h3>
-                ${item.name}
-                </h3>
+                <h3>${item.name}</h3>
 
                 <p>
                 Size:
@@ -158,79 +68,111 @@ function renderCart(){
                 ${item.color}
                 </p>
 
-                <p class="price">
-                ₹${item.price}
-                </p>
+                <div class="quantity-box">
 
-            </div>
+                    <button
+                    class="qty-btn"
+                    onclick="decreaseQty(${index})">
 
-            <div class="quantity">
+                    -
+
+                    </button>
+
+                    <span class="qty">
+
+                    ${item.qty}
+
+                    </span>
+
+                    <button
+                    class="qty-btn"
+                    onclick="increaseQty(${index})">
+
+                    +
+
+                    </button>
+
+                </div>
 
                 <button
-                onclick="decreaseQty(${index})">
+                class="delete-btn"
+                onclick="removeItem(${index})">
 
-                -
+                Delete
 
                 </button>
 
-                <span>
-
-                ${item.qty}
-
-                </span>
-
-                <button
-                onclick="increaseQty(${index})">
-
-                +
-
-                </button>
-
             </div>
 
-            <button
-            class="delete-btn"
-            onclick="deleteItem(${index})">
+            <div class="item-price">
 
-            🗑
+                ₹${item.price * item.qty}
 
-            </button>
+            </div>
 
         </div>
         `;
 
     });
 
-    totalItems.textContent =
-    itemCount;
-
-    totalPrice.textContent =
+    cartTotal.innerText =
     `₹${total}`;
 
 }
 
-// PAYMENT BUTTON
+function increaseQty(index){
 
-paymentBtn.addEventListener(
-"click",
-()=>{
+    cart[index].qty++;
+
+    saveCart();
+
+}
+
+function decreaseQty(index){
+
+    if(cart[index].qty > 1){
+
+        cart[index].qty--;
+
+    }
+
+    saveCart();
+
+}
+
+function removeItem(index){
+
+    cart.splice(index,1);
+
+    saveCart();
+
+}
+
+function saveCart(){
+
+    localStorage.setItem(
+    "cart",
+    JSON.stringify(cart)
+    );
+
+    loadCart();
+
+}
+
+function goToPayment(){
 
     if(cart.length === 0){
 
         alert(
-        "Your cart is empty."
+        "Your cart is empty!"
         );
 
         return;
-
     }
 
     window.location.href =
     "payment.html";
 
 }
-);
 
-// INITIAL LOAD
-
-renderCart();
+loadCart();
