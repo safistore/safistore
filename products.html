@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
 
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -9,19 +9,34 @@
 
 <link rel="stylesheet" href="style.css">
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
 </head>
+
 <body>
 
 <header>
 
     <div class="brand">
 
-        <img src="safi.png"
+        <img
+        src="safi.png"
+        alt="SAFI STORE"
         class="logo-img">
 
         <h2 class="site-title">
             SAFI STORE
         </h2>
+
+    </div>
+
+    <div class="search-container">
+
+        <input
+        type="text"
+        id="searchInput"
+        placeholder="🔍 Search Products..."
+        onkeyup="searchProducts()">
 
     </div>
 
@@ -41,31 +56,23 @@
 
     <h1>Our Products</h1>
 
-    <p>Choose your favourite products</p>
+    <p>
+        Premium Quality Products At Affordable Prices
+    </p>
 
 </section>
 
-<div class="search-container">
-
-    <input
-    type="text"
-    id="searchInput"
-    placeholder="Search Products..."
-    onkeyup="searchProducts()">
-
-</div>
-
 <section class="products">
 
-    <!-- Product 1 -->
+    <!-- PRODUCT 1 -->
 
     <div class="product-card">
 
-        <img src="products/watch.jpg">
+        <img src="products/watch.jpg" alt="Watch">
 
         <h3>Premium Watch</h3>
 
-        <p>Luxury waterproof watch</p>
+        <p>Luxury waterproof wrist watch.</p>
 
         <h4>₹999</h4>
 
@@ -73,9 +80,7 @@
         1,
         'Premium Watch',
         999,
-        'products/watch.jpg',
-        'size1',
-        'color1'
+        'products/watch.jpg'
         )">
 
         Add To Cart
@@ -84,11 +89,242 @@
 
     </div>
 
-    <!-- Add remaining products here -->
+    <!-- PRODUCT 2 -->
+
+    <div class="product-card">
+
+        <img src="products/bag.jpg" alt="Bag">
+
+        <h3>Travel Bag</h3>
+
+        <p>Premium quality travel backpack.</p>
+
+        <h4>₹1299</h4>
+
+        <button onclick="addProduct(
+        2,
+        'Travel Bag',
+        1299,
+        'products/bag.jpg'
+        )">
+
+        Add To Cart
+
+        </button>
+
+    </div>
+
+    <!-- PRODUCT 3 -->
+
+    <div class="product-card">
+
+        <img src="products/headphone.jpg" alt="Headphone">
+
+        <h3>Wireless Headphone</h3>
+
+        <p>Noise cancelling bluetooth headphone.</p>
+
+        <h4>₹1999</h4>
+
+        <button onclick="addProduct(
+        3,
+        'Wireless Headphone',
+        1999,
+        'products/headphone.jpg'
+        )">
+
+        Add To Cart
+
+        </button>
+
+    </div>
+
+    <!-- PRODUCT 4 -->
+
+    <div class="product-card">
+
+        <img src="products/shoes.jpg" alt="Shoes">
+
+        <h3>Running Shoes</h3>
+
+        <p>Comfortable sports running shoes.</p>
+
+        <h4>₹1499</h4>
+
+        <button onclick="addProduct(
+        4,
+        'Running Shoes',
+        1499,
+        'products/shoes.jpg'
+        )">
+
+        Add To Cart
+
+        </button>
+
+    </div>
+
+    <!-- PRODUCT 5 -->
+
+    <div class="product-card">
+
+        <img src="products/perfume.jpg" alt="Perfume">
+
+        <h3>Luxury Perfume</h3>
+
+        <p>Long lasting premium fragrance.</p>
+
+        <h4>₹799</h4>
+
+        <button onclick="addProduct(
+        5,
+        'Luxury Perfume',
+        799,
+        'products/perfume.jpg'
+        )">
+
+        Add To Cart
+
+        </button>
+
+    </div>
+
+    <!-- PRODUCT 6 -->
+
+    <div class="product-card">
+
+        <img src="products/tshirt.jpg" alt="T-Shirt">
+
+        <h3>Premium T-Shirt</h3>
+
+        <p>Soft cotton round neck t-shirt.</p>
+
+        <h4>₹499</h4>
+
+        <button onclick="addProduct(
+        6,
+        'Premium T-Shirt',
+        499,
+        'products/tshirt.jpg'
+        )">
+
+        Add To Cart
+
+        </button>
+
+    </div>
+
+    <!-- PRODUCT 7 -->
+
+    <div class="product-card">
+
+        <img src="products/sunglass.jpg" alt="Sunglass">
+
+        <h3>Stylish Sunglass</h3>
+
+        <p>UV protected premium sunglass.</p>
+
+        <h4>₹599</h4>
+
+        <button onclick="addProduct(
+        7,
+        'Stylish Sunglass',
+        599,
+        'products/sunglass.jpg'
+        )">
+
+        Add To Cart
+
+        </button>
+
+    </div>
+
+    <!-- PRODUCT 8 -->
+
+    <div class="product-card">
+
+        <img src="products/wallet.jpg" alt="Wallet">
+
+        <h3>Leather Wallet</h3>
+
+        <p>Premium leather wallet.</p>
+
+        <h4>₹699</h4>
+
+        <button onclick="addProduct(
+        8,
+        'Leather Wallet',
+        699,
+        'products/wallet.jpg'
+        )">
+
+        Add To Cart
+
+        </button>
+
+    </div>
+
+    <!-- PRODUCT 9 -->
+
+    <div class="product-card">
+
+        <img src="products/cap.jpg" alt="Cap">
+
+        <h3>Fashion Cap</h3>
+
+        <p>Modern stylish cap.</p>
+
+        <h4>₹299</h4>
+
+        <button onclick="addProduct(
+        9,
+        'Fashion Cap',
+        299,
+        'products/cap.jpg'
+        )">
+
+        Add To Cart
+
+        </button>
+
+    </div>
+
+    <!-- PRODUCT 10 -->
+
+    <div class="product-card">
+
+        <img src="products/bottle.jpg" alt="Bottle">
+
+        <h3>Water Bottle</h3>
+
+        <p>Stainless steel insulated bottle.</p>
+
+        <h4>₹249</h4>
+
+        <button onclick="addProduct(
+        10,
+        'Water Bottle',
+        249,
+        'products/bottle.jpg'
+        )">
+
+        Add To Cart
+
+        </button>
+
+    </div>
 
 </section>
+
+<footer>
+
+    <p>
+        © 2025 SAFI STORE. All Rights Reserved.
+    </p>
+
+</footer>
 
 <script src="script.js"></script>
 
 </body>
-</html>
+</html>sf
