@@ -1,93 +1,99 @@
-// Load cart from localStorage
+let cart =
+JSON.parse(localStorage.getItem("cart")) || [];
 
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+function addProduct(
+id,
+name,
+price,
+image,
+sizeId,
+colorId
+){
 
-// Add product to cart
+const size =
+document.getElementById(sizeId).value;
 
-function addProduct(id, name, price, image) {
+const color =
+document.getElementById(colorId).value;
 
-    const existingProduct = cart.find(
-        item => item.id === id
-    );
+const existing =
+cart.find(item =>
+item.id===id &&
+item.size===size &&
+item.color===color
+);
 
-    if (existingProduct) {
+if(existing){
 
-        existingProduct.qty++;
+existing.qty++;
 
-    } else {
+}else{
 
-        cart.push({
-            id: id,
-            name: name,
-            price: price,
-            image: image,
-            qty: 1
-        });
+cart.push({
 
-    }
+id,
+name,
+price,
+image,
+size,
+color,
+qty:1
 
-    localStorage.setItem(
-        "cart",
-        JSON.stringify(cart)
-    );
-
-    updateCartCount();
-
-    alert(name + " added to cart!");
-}
-
-// Search products
-
-function searchProducts() {
-
-    const input =
-        document.getElementById("searchInput")
-        .value
-        .toLowerCase();
-
-    const products =
-        document.querySelectorAll(".product-card");
-
-    products.forEach(product => {
-
-        const title =
-            product.querySelector("h3")
-            .innerText
-            .toLowerCase();
-
-        if (title.includes(input)) {
-
-            product.style.display = "block";
-
-        } else {
-
-            product.style.display = "none";
-
-        }
-
-    });
-}
-
-// Update cart count
-
-function updateCartCount() {
-
-    const cartBtn =
-        document.querySelector(".cart-btn");
-
-    if (!cartBtn) return;
-
-    let total = 0;
-
-    cart.forEach(item => {
-        total += item.qty;
-    });
-
-    cartBtn.innerHTML = `🛒 Cart (${total})`;
-}
-
-// Run on page load
-
-document.addEventListener("DOMContentLoaded", () => {
-    updateCartCount();
 });
+
+}
+
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
+);
+
+updateCartCount();
+
+alert("Added To Cart");
+
+}
+
+function searchProducts(){
+
+let input =
+document.getElementById("searchInput")
+.value
+.toLowerCase();
+
+let products =
+document.querySelectorAll(".product-card");
+
+products.forEach(product=>{
+
+let title =
+product.querySelector("h3")
+.innerText
+.toLowerCase();
+
+product.style.display =
+title.includes(input)
+? "block"
+: "none";
+
+});
+
+}
+
+function updateCartCount(){
+
+let count = 0;
+
+cart.forEach(item=>{
+
+count += item.qty;
+
+});
+
+document.getElementById(
+"cartCount"
+).innerText = count;
+
+}
+
+updateCartCount();
