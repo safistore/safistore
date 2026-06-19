@@ -8,10 +8,13 @@ getDocs
 from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
 
 const firebaseConfig = {
-
-/* PASTE YOUR FIREBASE CONFIG HERE */
-
-};
+    apiKey: "AIzaSyAszpqCGgqPq-a90hcpy7lO5VrpNRfMxSQ",
+    authDomain: "safistore-c956b.firebaseapp.com",
+    projectId: "safistore-c956b",
+    storageBucket: "safistore-c956b.firebasestorage.app",
+    messagingSenderId: "977849577729",
+    appId: "1:977849577729:web:4dd4ce0f93b31ee6e2eb00"
+  };
 
 const app = initializeApp(firebaseConfig);
 
