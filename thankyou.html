@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Order Placed - Safi Store</title>
+<title>Order Success - Safi Store</title>
 
 <style>
 
@@ -34,24 +34,36 @@ width:100%;
 }
 
 .logo{
-width:100px;
-margin-bottom:20px;
+width:90px;
+margin-bottom:15px;
 }
 
 .success{
-font-size:70px;
-margin-bottom:15px;
+font-size:60px;
+margin-bottom:10px;
 }
 
 h1{
 color:#28a745;
-margin-bottom:15px;
+margin-bottom:10px;
 }
 
 p{
-margin-bottom:12px;
-line-height:1.6;
+margin-bottom:10px;
 color:#555;
+line-height:1.6;
+}
+
+.order-box{
+background:#f8f9fa;
+padding:15px;
+margin-top:20px;
+border-radius:10px;
+text-align:left;
+}
+
+.order-box p{
+margin:8px 0;
 }
 
 .btn{
@@ -69,60 +81,64 @@ font-weight:600;
 background:#0b5ed7;
 }
 
-.order-box{
-background:#f8f9fa;
-padding:15px;
-margin-top:20px;
-border-radius:10px;
+.status{
+color:#ff9800;
+font-weight:600;
 }
 
 </style>
 
 </head>
+
 <body>
 
 <div class="container">
 
-<img src="safi.png" class="logo" alt="Safi Store">
+    <img src="safi.png" class="logo" alt="Safi Store">
 
-<div class="success">✅</div>
+    <div class="success">✅</div>
 
-<h1>Order Placed Successfully</h1>
+    <h1>Order Placed Successfully</h1>
 
-<p>
-Thank you for shopping with Safi Store.
-</p>
+    <p>Thank you for shopping with Safi Store.</p>
 
-<p>
-Your order request has been submitted successfully.
-</p>
+    <p>Your order has been received and is under verification.</p>
 
-<p>
-Please send your payment screenshot in WhatsApp if you have not already shared it.
-</p>
+    <p>Please send payment screenshot in WhatsApp if not already sent.</p>
 
-<div class="order-box">
+    <div class="order-box">
 
-<p><strong>Order Status:</strong> Pending Verification</p>
+        <p><strong>Order ID:</strong> <span id="orderId"></span></p>
 
-<p>
-Our team will verify your payment and send updates to your WhatsApp number.
-</p>
+        <p><strong>Status:</strong> <span class="status">Pending Verification</span></p>
 
-</div>
+        <p>
+            We will verify your payment and update you on WhatsApp.
+        </p>
 
-<p>
-You will receive confirmation, shipping updates, and delivery updates through WhatsApp.
-</p>
+    </div>
 
-<a href="products.html" class="btn">
-Continue Shopping
-</a>
+    <a href="products.html" class="btn">
+        Continue Shopping
+    </a>
 
 </div>
 
 <script>
 
+const latestOrder =
+JSON.parse(
+localStorage.getItem("latestOrder")
+);
+
+if(latestOrder){
+
+document.getElementById("orderId").innerText =
+latestOrder.orderId;
+
+}
+
+// Clear cart after order is placed
 localStorage.removeItem("cart");
 
 </script>
