@@ -1,271 +1,118 @@
-// LOAD CART
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
 
-let cart =
-JSON.parse(
-localStorage.getItem("cart")
-) || [];
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
 
-// TOTAL
+const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "safistore-c956b.firebaseapp.com",
+    projectId: "safistore-c956b",
+    storageBucket: "safistore-c956b.firebasestorage.app",
+    messagingSenderId: "977849577729",
+    appId: "1:977849577729:web:4dd4ce0f93b31ee6e2eb00"
+};
 
-let total = 0;
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-// ELEMENTS
+async function saveOrder() {
 
-const orderTotal =
-document.getElementById(
-"orderTotal"
-);
+    try {
 
-const productSummary =
-document.getElementById(
-"productSummary"
-);
+        const cart =
+        JSON.parse(localStorage.getItem("cart")) || [];
 
-// SHOW PRODUCTS
+        const customerName =
+        document.getElementById("customerName").value.trim();
 
-function loadOrderSummary(){
+        const phone =
+        document.getElementById("phone").value.trim();
 
-    productSummary.innerHTML = "";
+        const email =
+        document.getElementById("email").value.trim();
 
-    if(cart.length === 0){
+        const address =
+        document.getElementById("address").value.trim();
 
-        productSummary.innerHTML =
-        "<p>No products found.</p>";
+        const city =
+        document.getElementById("city").value.trim();
 
-        orderTotal.innerText = "₹0";
+        const state =
+        document.getElementById("state").value.trim();
 
-        return;
-    }
+        const pincode =
+        document.getElementById("pincode").value.trim();
 
-    cart.forEach(item=>{
+        if (
+            !customerName ||
+            !phone ||
+            !address ||
+            !city ||
+            !state ||
+            !pincode
+        ) {
+            alert("Please fill all shipping details.");
+            return;
+        }
 
-        const subtotal =
-        item.price * item.qty;
+        let subtotal = 0;
 
-        total += subtotal;
+        cart.forEach(item => {
+            subtotal += item.price * item.qty;
+        });
 
-        productSummary.innerHTML +=
+        const deliveryCharge = 50;
+        const total = subtotal + deliveryCharge;
 
-        `
-        <div class="summary-item">
+        const orderId =
+        "SAFI" + Date.now();
 
-            <div>
+        await addDoc(
+            collection(db, "orders"),
+            {
+                orderId,
 
-                <strong>
-                ${item.name}
-                </strong>
+                customerName,
+                phone,
+                email,
 
-                <br>
+                address,
+                city,
+                state,
+                pincode,
 
-                Size:
-                ${item.size}
+                products: cart,
 
-                <br>
+                subtotal,
+                deliveryCharge,
+                total,
 
-                Color:
-                ${item.color}
+                paymentStatus: "Paid",
+                orderStatus: "Pending",
 
-                <br>
-
-                Qty:
-                ${item.qty}
-
-            </div>
-
-            <div>
-
-                ₹${subtotal}
-
-            </div>
-
-        </div>
-        `;
-
-    });
-
-    orderTotal.innerText =
-    `₹${total}`;
-
-}
-
-loadOrderSummary();
-
-// COPY UPI
-
-function copyUPI(){
-
-    const upi =
-    document.getElementById(
-    "upiId"
-    ).innerText;
-
-    navigator.clipboard
-    .writeText(upi);
-
-    const btn =
-    document.getElementById(
-    "copyBtn"
-    );
-
-    btn.innerText =
-    "Copied ✓";
-
-    setTimeout(()=>{
-
-        btn.innerText =
-        "Copy";
-
-    },2000);
-
-}
-
-// COMPLETE PAYMENT
-
-document.getElementById(
-"finishPaymentBtn"
-).addEventListener(
-"click",
-function(){
-
-    const name =
-    document.getElementById(
-    "customerName"
-    ).value.trim();
-
-    const phone =
-    document.getElementById(
-    "customerPhone"
-    ).value.trim();
-
-    const email =
-    document.getElementById(
-    "customerEmail"
-    ).value.trim();
-
-    const address =
-    document.getElementById(
-    "customerAddress"
-    ).value.trim();
-
-    const city =
-    document.getElementById(
-    "customerCity"
-    ).value.trim();
-
-    const state =
-    document.getElementById(
-    "customerState"
-    ).value.trim();
-
-    const pincode =
-    document.getElementById(
-    "customerPincode"
-    ).value.trim();
-
-    // VALIDATION
-
-    if(
-        !name ||
-        !phone ||
-        !address ||
-        !city ||
-        !state ||
-        !pincode
-    ){
-
-        alert(
-        "Please fill all shipping details."
+                createdAt: serverTimestamp()
+            }
         );
 
-        return;
+        alert(
+            "Order Placed Successfully!\nOrder ID: " +
+            orderId
+        );
+
+        localStorage.removeItem("cart");
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "Failed to save order."
+        );
     }
+}
 
-    // ORDER DETAILS
-
-    let orderText = "";
-
-    cart.forEach(item=>{
-
-        orderText +=
-
-`📦 ${item.name}
-Size: ${item.size}
-Color: ${item.color}
-Qty: ${item.qty}
-Price: ₹${item.price}
-
-`;
-
-    });
-
-    // WHATSAPP MESSAGE
-
-    const whatsappMessage =
-
-`🛍 NEW ORDER RECEIVED
-
-━━━━━━━━━━━━━━
-
-👤 CUSTOMER DETAILS
-
-Name: ${name}
-
-Phone: ${phone}
-
-Email: ${email}
-
-Address:
-${address}
-
-City: ${city}
-
-State: ${state}
-
-Pincode: ${pincode}
-
-━━━━━━━━━━━━━━
-
-📦 ORDER DETAILS
-
-${orderText}
-
-━━━━━━━━━━━━━━
-
-💰 TOTAL AMOUNT
-
-₹${total}
-
-━━━━━━━━━━━━━━
-
-✅ PAYMENT COMPLETED
-
-Customer will send payment screenshot after opening WhatsApp.
-
-Please verify payment and process shipment.`;
-
-    // OPEN WHATSAPP
-
-    window.open(
-
-    `https://wa.me/919345314960?text=${encodeURIComponent(whatsappMessage)}`,
-
-    "_blank"
-
-    );
-
-    // CLEAR CART
-
-    localStorage.removeItem(
-    "cart"
-    );
-
-    // REDIRECT
-
-    setTimeout(()=>{
-
-        window.location.href =
-        "thankyou.html";
-
-    },1500);
-
-});
+window.saveOrder = saveOrder;
