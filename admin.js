@@ -1,3 +1,12 @@
+import {
+    getFirestore,
+    collection,
+    getDocs,
+    addDoc
+}
+from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
+
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
 
 import {
@@ -156,3 +165,9 @@ Delivered
 }
 
 loadOrders();
+
+import {
+addDoc,
+collection
+}
+from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";

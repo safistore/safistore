@@ -122,3 +122,66 @@ document.addEventListener(
     "DOMContentLoaded",
     updateCartCount
 );
+
+import {
+collection,
+getDocs
+}
+from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
+
+const productsContainer =
+document.getElementById("productsContainer");
+
+async function loadProducts(){
+
+const snapshot =
+await getDocs(
+collection(db,"products")
+);
+
+snapshot.forEach(doc=>{
+
+const product =
+doc.data();
+
+productsContainer.innerHTML += `
+
+<div class="product-card">
+
+<img src="${product.image}">
+
+<h3>${product.name}</h3>
+
+<p>${product.description}</p>
+
+<h4>₹${product.price}</h4>
+
+<select>
+
+${product.sizes.map(size=>
+`<option>${size}</option>`
+).join("")}
+
+</select>
+
+<select>
+
+${product.colors.map(color=>
+`<option>${color}</option>`
+).join("")}
+
+</select>
+
+<button>
+Add To Cart
+</button>
+
+</div>
+
+`;
+
+});
+
+}
+
+loadProducts();
