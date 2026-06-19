@@ -1,143 +1,33 @@
-if(localStorage.getItem("adminLoggedIn") !== "true"){
+import { db } from "./firebase-config.js";
+import { collection, getDocs, updateDoc, doc } 
+from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
-    window.location.href = "admin-login.html";
+const box = document.getElementById("orders");
 
+async function load() {
+  const snap = await getDocs(collection(db, "orders"));
+
+  snap.forEach(d => {
+    const o = d.data();
+
+    box.innerHTML += `
+      <div class="order">
+        <p>${o.orderId}</p>
+        <p>₹${o.total}</p>
+        <p>Status: ${o.status}</p>
+
+        <button onclick="update('${d.id}','Confirmed')">Confirm</button>
+        <button onclick="update('${d.id}','Shipped')">Ship</button>
+        <button onclick="update('${d.id}','Delivered')">Deliver</button>
+      </div>
+    `;
+  });
 }
 
-const adminProducts =
-document.getElementById("adminProducts");
+window.update = async (id, status) => {
+  const ref = doc(db, "orders", id);
+  await updateDoc(ref, { status });
+  alert("Updated");
+};
 
-let products =
-JSON.parse(localStorage.getItem("products")) || [];
-
-function saveProducts(){
-
-    localStorage.setItem(
-        "products",
-        JSON.stringify(products)
-    );
-
-}
-
-function renderProducts(){
-
-    adminProducts.innerHTML = "";
-
-    if(products.length === 0){
-
-        adminProducts.innerHTML =
-        "<p>No Products Added</p>";
-
-        return;
-    }
-
-    products.forEach((product,index)=>{
-
-        adminProducts.innerHTML += `
-
-        <div class="admin-product">
-
-            <div>
-
-                <h3>${product.name}</h3>
-
-                <p>₹${product.price}</p>
-
-            </div>
-
-            <button
-            class="delete-btn"
-            onclick="deleteProduct(${index})">
-            Delete
-            </button>
-
-        </div>
-
-        `;
-
-    });
-
-}
-
-function addProduct(){
-
-    const name =
-    document.getElementById(
-    "productName").value;
-
-    const price =
-    document.getElementById(
-    "productPrice").value;
-
-    const image =
-    document.getElementById(
-    "productImage").value;
-
-    if(
-        !name ||
-        !price ||
-        !image
-    ){
-        alert("Fill All Fields");
-        return;
-    }
-
-    products.push({
-
-        id: Date.now(),
-
-        name:name,
-
-        price:price,
-
-        image:image
-
-    });
-
-    saveProducts();
-
-    renderProducts();
-
-    document.getElementById(
-    "productName").value="";
-
-    document.getElementById(
-    "productPrice").value="";
-
-    document.getElementById(
-    "productImage").value="";
-
-    alert("Product Added");
-
-}
-
-function deleteProduct(index){
-
-    if(confirm("Delete Product?")){
-
-        products.splice(index,1);
-
-        saveProducts();
-
-        renderProducts();
-
-    }
-
-}
-
-function logoutAdmin(){
-
-    localStorage.removeItem(
-    "adminLoggedIn"
-    );
-
-    window.location.href =
-    "admin-login.html";
-
-}
-
-window.addProduct = addProduct;
-window.deleteProduct = deleteProduct;
-window.logoutAdmin = logoutAdmin;
-
-renderProducts();
+load();

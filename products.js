@@ -1,55 +1,34 @@
 import { db } from "./firebase-config.js";
-import {
-  collection,
-  getDocs
-} from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+import { collection, getDocs } 
+from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
-const container = document.getElementById("productsContainer");
+const box = document.getElementById("products");
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-async function loadProducts() {
+async function load() {
+  const snap = await getDocs(collection(db, "products"));
 
-  const snapshot = await getDocs(collection(db, "products"));
-
-  container.innerHTML = "";
-
-  snapshot.forEach(doc => {
-
+  snap.forEach(doc => {
     const p = doc.data();
 
-    container.innerHTML += `
-      <div class="product-card">
-
-        <img src="${p.image}" />
-
+    box.innerHTML += `
+      <div class="card">
+        <img src="${p.image}" width="150">
         <h3>${p.name}</h3>
-
         <p>₹${p.price}</p>
-
-        <button onclick="addToCart('${doc.id}', '${p.name}', ${p.price}, '${p.image}')">
-          Add To Cart
+        <button onclick="addCart('${p.name}', ${p.price})">
+          Add to Cart
         </button>
-
       </div>
     `;
-
   });
-
 }
 
-window.addToCart = function(id, name, price, image) {
-
-  cart.push({
-    id,
-    name,
-    price,
-    image
-  });
-
+window.addCart = (name, price) => {
+  cart.push({ name, price });
   localStorage.setItem("cart", JSON.stringify(cart));
-
   alert("Added to cart");
 };
 
-loadProducts();
+load();

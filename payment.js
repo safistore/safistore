@@ -1,89 +1,26 @@
 import { db } from "./firebase-config.js";
-import {
-  collection,
-  addDoc,
-  Timestamp
-} from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+import { collection, addDoc } 
+from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
-function copyUPI() {
-  navigator.clipboard.writeText("9345314960@axl");
-  alert("UPI Copied");
-}
-window.copyUPI = copyUPI;
-
-function generateOrderId() {
-
+function orderId() {
   const d = new Date();
-
-  const year = d.getFullYear();
-
-  const month = String(d.getMonth() + 1).padStart(2, "0");
-
-  const day = String(d.getDate()).padStart(2, "0");
-
-  const random = Math.floor(1000 + Math.random() * 9000);
-
-  return `SAFI-${year}${month}${day}-${random}`;
+  return `SAFI-${d.getFullYear()}${d.getMonth()+1}${d.getDate()}-${Math.floor(1000+Math.random()*9000)}`;
 }
 
-const form = document.getElementById("orderForm");
-
-form.addEventListener("submit", async (e) => {
-
-  e.preventDefault();
-
-  const name = document.getElementById("customerName").value;
-  const phone = document.getElementById("customerPhone").value;
-  const address = document.getElementById("customerAddress").value;
+window.placeOrder = async function() {
 
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  let total = 0;
-  let itemsText = "";
+  const id = orderId();
 
-  cart.forEach(item => {
-    total += Number(item.price);
-    itemsText += `${item.name} - ₹${item.price}\n`;
+  await addDoc(collection(db, "orders"), {
+    orderId: id,
+    items: cart,
+    total: cart.reduce((a,b)=>a+b.price,0),
+    status: "Pending"
   });
 
-  const orderId = generateOrderId();
-
-  const orderData = {
-    orderId,
-    customerName: name,
-    phone,
-    address,
-    items: cart,
-    total,
-    status: "Pending",
-    createdAt: Timestamp.now()
-  };
-
-  // SAVE TO FIREBASE
-  await addDoc(collection(db, "orders"), orderData);
-
-  // WHATSAPP MESSAGE
-  const message = `
-🛒 SAFI STORE ORDER
-
-Order ID: ${orderId}
-Name: ${name}
-Phone: ${phone}
-Address: ${address}
-
-Items:
-${itemsText}
-
-Total: ₹${total}
-Status: Pending Verification
-`;
-
-  window.open(
-    `https://wa.me/919345314960?text=${encodeURIComponent(message)}`,
-    "_blank"
-  );
-
-  localStorage.setItem("latestOrder", JSON.stringify(orderData));
+  localStorage.removeItem("cart");
 
   window.location.href = "thankyou.html";
-});
+};
