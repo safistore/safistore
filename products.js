@@ -1,179 +1,85 @@
-// Load cart
-
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-/* ADD PRODUCT TO CART */
-
-function addProduct(
-    id,
-    name,
-    price,
-    image,
-    sizeId,
-    colorId
-){
-
-    const size =
-    document.getElementById(sizeId).value;
-
-    const color =
-    document.getElementById(colorId).value;
-
-    // Check if same product with same variation exists
-
-    const existingProduct =
-    cart.find(item =>
-
-        item.id === id &&
-        item.size === size &&
-        item.color === color
-
-    );
-
-    if(existingProduct){
-
-        existingProduct.qty++;
-
-    }else{
-
-        cart.push({
-
-            id: id,
-            name: name,
-            price: price,
-            image: image,
-            size: size,
-            color: color,
-            qty: 1
-
-        });
-
-    }
-
-    localStorage.setItem(
-        "cart",
-        JSON.stringify(cart)
-    );
-
-    updateCartCount();
-
-    alert(
-        `${name}\nSize: ${size}\nColor: ${color}\nAdded To Cart`
-    );
-}
-
-/* SEARCH PRODUCTS */
-
-function searchProducts(){
-
-    const input =
-    document.getElementById("searchInput")
-    .value
-    .toLowerCase();
-
-    const products =
-    document.querySelectorAll(".product-card");
-
-    products.forEach(product => {
-
-        const title =
-        product.querySelector("h3")
-        .innerText
-        .toLowerCase();
-
-        if(title.includes(input)){
-
-            product.style.display = "block";
-
-        }else{
-
-            product.style.display = "none";
-
-        }
-
-    });
-
-}
-
-/* UPDATE CART COUNT */
-
-function updateCartCount(){
-
-    const cartCount =
-    document.getElementById("cartCount");
-
-    if(!cartCount) return;
-
-    let totalItems = 0;
-
-    cart.forEach(item => {
-
-        totalItems += item.qty;
-
-    });
-
-    cartCount.innerText = totalItems;
-
-}
-
-/* PAGE LOAD */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    updateCartCount
-);
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
 
 import {
+getFirestore,
 collection,
 getDocs
 }
 from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
 
-const productsContainer =
-document.getElementById("productsContainer");
+const firebaseConfig = {
+apiKey: "AIzaSyAszpqCGgqPq-a90hcpy7lO5VrpNRfMxSQ",
+authDomain: "safistore-c956b.firebaseapp.com",
+projectId: "safistore-c956b",
+storageBucket: "safistore-c956b.appspot.com",
+messagingSenderId: "977849577729",
+appId: "1:977849577729:web:4dd4ce0f93b31ee6e2eb00"
+};
+
+const app =
+initializeApp(firebaseConfig);
+
+const db =
+getFirestore(app);
 
 async function loadProducts(){
+
+const container =
+document.getElementById("productsContainer");
+
+container.innerHTML = "";
 
 const snapshot =
 await getDocs(
 collection(db,"products")
 );
 
-snapshot.forEach(doc=>{
+snapshot.forEach(product=>{
 
-const product =
-doc.data();
+const data =
+product.data();
 
-productsContainer.innerHTML += `
+container.innerHTML += `
 
 <div class="product-card">
 
-<img src="${product.image}">
+<img src="${data.image}" alt="${data.name}">
 
-<h3>${product.name}</h3>
+<h3>${data.name}</h3>
 
-<p>${product.description}</p>
+<p>${data.description}</p>
 
-<h4>₹${product.price}</h4>
+<div class="price">
+₹${data.price}
+</div>
 
-<select>
+<select class="size">
 
-${product.sizes.map(size=>
+${data.sizes.map(size=>
 `<option>${size}</option>`
 ).join("")}
 
 </select>
 
-<select>
+<select class="color">
 
-${product.colors.map(color=>
+${data.colors.map(color=>
 `<option>${color}</option>`
 ).join("")}
 
 </select>
 
-<button>
+<button
+onclick="addToCart(
+'${product.id}',
+'${data.name}',
+${data.price},
+'${data.image}'
+)">
+
 Add To Cart
+
 </button>
 
 </div>
@@ -184,4 +90,66 @@ Add To Cart
 
 }
 
+window.addToCart =
+function(
+id,
+name,
+price,
+image
+){
+
+let cart =
+JSON.parse(
+localStorage.getItem("cart")
+) || [];
+
+cart.push({
+id,
+name,
+price,
+image,
+qty:1
+});
+
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
+);
+
+alert(
+name +
+" added to cart"
+);
+
+};
+
 loadProducts();
+
+document
+.getElementById("searchInput")
+.addEventListener(
+"keyup",
+function(){
+
+const value =
+this.value.toLowerCase();
+
+const cards =
+document.querySelectorAll(
+".product-card"
+);
+
+cards.forEach(card=>{
+
+const text =
+card.innerText
+.toLowerCase();
+
+card.style.display =
+text.includes(value)
+? "block"
+: "none";
+
+});
+
+});

@@ -1,15 +1,20 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>SAFI STORE Admin Panel</title>
 
 <link rel="icon" href="safi.png">
+
 <link rel="stylesheet" href="admin.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 </head>
 
@@ -17,104 +22,150 @@
 
 <header class="header">
 
-    <div class="logo-box">
+```
+<div class="logo-box">
 
-        <img src="safi.png" alt="SAFI STORE" class="logo">
+    <img src="safi.png" alt="SAFI STORE" class="logo">
 
-        <h1>SAFI STORE ADMIN</h1>
+    <h1>SAFI STORE ADMIN</h1>
 
-    </div>
+</div>
 
-    <nav>
+<nav>
 
-        <a href="dashboard.html">Dashboard</a>
+    <a href="#dashboard">Dashboard</a>
 
-        <a href="#products">Products</a>
+    <a href="#products">Products</a>
 
-        <a href="#orders">Orders</a>
+    <a href="#orders">Orders</a>
 
-        <a href="index.html">Website</a>
+    <a href="index.html">Website</a>
 
-    </nav>
+</nav>
+```
 
 </header>
 
-<div class="container">
+<!-- DASHBOARD -->
 
-    <!-- ADD PRODUCT -->
+<section id="dashboard" class="stats">
 
-    <section id="products">
+```
+<div class="card">
 
-        <h2>Add Product</h2>
+    <h2 id="totalOrders">0</h2>
 
-        <div class="product-form">
-
-            <input
-            type="text"
-            id="productName"
-            placeholder="Product Name">
-
-            <textarea
-            id="productDescription"
-            placeholder="Product Description"></textarea>
-
-            <input
-            type="number"
-            id="productPrice"
-            placeholder="Product Price">
-
-            <input
-            type="text"
-            id="productImage"
-            placeholder="Main Image URL">
-
-            <input
-            type="text"
-            id="productSizes"
-            placeholder="Sizes (S,M,L or Standard)">
-
-            <input
-            type="text"
-            id="productColors"
-            placeholder="Colors (Black,Blue,White)">
-
-            <button onclick="addProduct()">
-                Add Product
-            </button>
-
-        </div>
-
-    </section>
-
-    <!-- PRODUCTS LIST -->
-
-    <section>
-
-        <h2>Products</h2>
-
-        <div id="productsContainer">
-
-            Loading Products...
-
-        </div>
-
-    </section>
-
-    <!-- ORDERS -->
-
-    <section id="orders">
-
-        <h2>Customer Orders</h2>
-
-        <div id="ordersContainer">
-
-            Loading Orders...
-
-        </div>
-
-    </section>
+    <p>Total Orders</p>
 
 </div>
+
+<div class="card">
+
+    <h2 id="totalRevenue">₹0</h2>
+
+    <p>Total Revenue</p>
+
+</div>
+
+<div class="card">
+
+    <h2 id="totalProducts">0</h2>
+
+    <p>Total Products</p>
+
+</div>
+```
+
+</section>
+
+<!-- ADD PRODUCT -->
+
+<section id="products" class="panel">
+
+```
+<h2>Add Product</h2>
+
+<div class="product-form">
+
+    <input
+    type="text"
+    id="productName"
+    placeholder="Product Name">
+
+    <textarea
+    id="productDescription"
+    placeholder="Product Description"></textarea>
+
+    <input
+    type="number"
+    id="productPrice"
+    placeholder="Product Price">
+
+    <input
+    type="text"
+    id="productImage"
+    placeholder="Image URL">
+
+    <input
+    type="text"
+    id="productSizes"
+    placeholder="Sizes (S,M,L or Standard)">
+
+    <input
+    type="text"
+    id="productColors"
+    placeholder="Colors (Black,Blue,White)">
+
+    <button onclick="addProduct()">
+        Add Product
+    </button>
+
+</div>
+```
+
+</section>
+
+<!-- PRODUCTS LIST -->
+
+<section class="panel">
+
+```
+<h2>Manage Products</h2>
+
+<div id="productsContainer">
+
+    Loading Products...
+
+</div>
+```
+
+</section>
+
+<!-- ORDERS -->
+
+<section id="orders" class="panel">
+
+```
+<h2>Customer Orders</h2>
+
+<div id="ordersContainer">
+
+    Loading Orders...
+
+</div>
+```
+
+</section>
+
+<footer>
+
+```
+<p>
+    © 2025 SAFI STORE Admin Dashboard
+</p>
+```
+
+</footer>
 
 <script type="module" src="admin.js"></script>
 
