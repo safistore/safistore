@@ -1,75 +1,55 @@
-const products = [
+import { db } from "./firebase-config.js";
+import {
+  collection,
+  getDocs
+} from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
-{
-id:1,
-name:"Smart Phone",
-price:9999,
-image:"https://via.placeholder.com/300x220"
-},
+const container = document.getElementById("productsContainer");
 
-{
-id:2,
-name:"Laptop",
-price:39999,
-image:"https://via.placeholder.com/300x220"
-},
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-{
-id:3,
-name:"Headphones",
-price:999,
-image:"https://via.placeholder.com/300x220"
-},
+async function loadProducts() {
 
-{
-id:4,
-name:"Smart Watch",
-price:1999,
-image:"https://via.placeholder.com/300x220"
+  const snapshot = await getDocs(collection(db, "products"));
+
+  container.innerHTML = "";
+
+  snapshot.forEach(doc => {
+
+    const p = doc.data();
+
+    container.innerHTML += `
+      <div class="product-card">
+
+        <img src="${p.image}" />
+
+        <h3>${p.name}</h3>
+
+        <p>₹${p.price}</p>
+
+        <button onclick="addToCart('${doc.id}', '${p.name}', ${p.price}, '${p.image}')">
+          Add To Cart
+        </button>
+
+      </div>
+    `;
+
+  });
+
 }
 
-];
+window.addToCart = function(id, name, price, image) {
 
-const productsContainer =
-document.getElementById("productsContainer");
+  cart.push({
+    id,
+    name,
+    price,
+    image
+  });
 
-products.forEach(product=>{
+  localStorage.setItem("cart", JSON.stringify(cart));
 
-productsContainer.innerHTML += `
-
-<div class="product-card">
-
-<img src="${product.image}" alt="${product.name}">
-
-<h3>${product.name}</h3>
-
-<p>₹${product.price}</p>
-
-<button onclick="addToCart(${product.id})">
-Add To Cart
-</button>
-
-</div>
-
-`;
-
-});
-
-window.addToCart = function(id){
-
-let cart =
-JSON.parse(localStorage.getItem("cart")) || [];
-
-const product =
-products.find(item=>item.id===id);
-
-cart.push(product);
-
-localStorage.setItem(
-"cart",
-JSON.stringify(cart)
-);
-
-alert("Product Added To Cart");
-
+  alert("Added to cart");
 };
+
+loadProducts();

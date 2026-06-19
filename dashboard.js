@@ -1,88 +1,105 @@
-if(localStorage.getItem("adminLoggedIn") !== "true"){
+import { db } from "./firebase-config.js";
+import {
+  collection,
+  getDocs,
+  doc,
+  updateDoc
+} from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
-    window.location.href =
-    "admin-login.html";
+const productsEl = document.getElementById("totalProducts");
+const ordersEl = document.getElementById("totalOrders");
+const revenueEl = document.getElementById("totalRevenue");
+const ordersContainer = document.getElementById("ordersContainer");
 
-}
+/* =========================
+   LOAD DASHBOARD DATA
+========================= */
 
-const totalProducts =
-document.getElementById(
-"totalProducts"
-);
+async function loadDashboard() {
 
-const totalOrders =
-document.getElementById(
-"totalOrders"
-);
+  const productsSnap = await getDocs(collection(db, "products"));
+  const ordersSnap = await getDocs(collection(db, "orders"));
 
-const totalRevenue =
-document.getElementById(
-"totalRevenue"
-);
+  let revenue = 0;
 
-const ordersContainer =
-document.getElementById(
-"ordersContainer"
-);
+  productsEl.innerText = productsSnap.size;
+  ordersEl.innerText = ordersSnap.size;
 
-const products =
-JSON.parse(
-localStorage.getItem("products")
-) || [];
+  ordersContainer.innerHTML = "";
 
-const latestOrder =
-JSON.parse(
-localStorage.getItem("latestOrder")
-);
+  if (ordersSnap.empty) {
+    ordersContainer.innerHTML = "<p>No Orders Found</p>";
+    revenueEl.innerText = "₹0";
+    return;
+  }
 
-totalProducts.innerText =
-products.length;
+  ordersSnap.forEach(docSnap => {
 
-if(latestOrder){
+    const o = docSnap.data();
+    const id = docSnap.id;
 
-    totalOrders.innerText = 1;
+    revenue += Number(o.total);
 
-    totalRevenue.innerText =
-    `₹${latestOrder.total}`;
+    ordersContainer.innerHTML += `
+      <div class="order-card">
 
-    ordersContainer.innerHTML = `
-
-    <div class="order-card">
-
-        <p>
-        <strong>Name:</strong>
-        ${latestOrder.customerName}
-        </p>
+        <p><b>Order ID:</b> ${o.orderId}</p>
+        <p><b>Name:</b> ${o.customerName}</p>
+        <p><b>Phone:</b> ${o.phone}</p>
+        <p><b>Total:</b> ₹${o.total}</p>
 
         <p>
-        <strong>Phone:</strong>
-        ${latestOrder.phone}
+          <b>Status:</b>
+          <span id="status-${id}">${o.status}</span>
         </p>
 
-        <p>
-        <strong>Address:</strong>
-        ${latestOrder.address}
-        </p>
+        <select id="select-${id}">
+          <option value="Pending" ${o.status === "Pending" ? "selected" : ""}>Pending</option>
+          <option value="Confirmed" ${o.status === "Confirmed" ? "selected" : ""}>Confirmed</option>
+          <option value="Shipped" ${o.status === "Shipped" ? "selected" : ""}>Shipped</option>
+          <option value="Delivered" ${o.status === "Delivered" ? "selected" : ""}>Delivered</option>
+        </select>
 
-        <p>
-        <strong>Total:</strong>
-        ₹${latestOrder.total}
-        </p>
+        <button onclick="updateStatus('${id}')">
+          Update Status
+        </button>
 
-        <p>
-        <strong>Status:</strong>
-        ${latestOrder.status}
-        </p>
-
-    </div>
-
+      </div>
     `;
 
-}else{
+  });
 
-    totalOrders.innerText = 0;
-
-    totalRevenue.innerText =
-    "₹0";
+  revenueEl.innerText = "₹" + revenue;
 
 }
+
+loadDashboard();
+
+/* =========================
+   UPDATE ORDER STATUS
+========================= */
+
+window.updateStatus = async function(id) {
+
+  const select = document.getElementById(`select-${id}`);
+  const newStatus = select.value;
+
+  try {
+
+    const orderRef = doc(db, "orders", id);
+
+    await updateDoc(orderRef, {
+      status: newStatus
+    });
+
+    document.getElementById(`status-${id}`).innerText = newStatus;
+
+    alert("Order status updated to: " + newStatus);
+
+  } catch (error) {
+
+    alert("Error updating status: " + error.message);
+
+  }
+
+};

@@ -1,142 +1,89 @@
+import { db } from "./firebase-config.js";
+import {
+  collection,
+  addDoc,
+  Timestamp
+} from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
 function copyUPI() {
-
-    const upi = document.getElementById("upiId");
-
-    navigator.clipboard.writeText(upi.value);
-
-    alert("UPI ID Copied Successfully");
-
+  navigator.clipboard.writeText("9345314960@axl");
+  alert("UPI Copied");
 }
-
 window.copyUPI = copyUPI;
-
-const orderForm =
-document.getElementById("orderForm");
 
 function generateOrderId() {
 
-    const today = new Date();
+  const d = new Date();
 
-    const year = today.getFullYear();
+  const year = d.getFullYear();
 
-    const month =
-    String(today.getMonth() + 1)
-    .padStart(2, "0");
+  const month = String(d.getMonth() + 1).padStart(2, "0");
 
-    const day =
-    String(today.getDate())
-    .padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
 
-    const randomNumber =
-    Math.floor(
-        1000 + Math.random() * 9000
-    );
+  const random = Math.floor(1000 + Math.random() * 9000);
 
-    return `SAFI-${year}${month}${day}-${randomNumber}`;
-
+  return `SAFI-${year}${month}${day}-${random}`;
 }
 
-orderForm.addEventListener(
-"submit",
-function (e) {
+const form = document.getElementById("orderForm");
 
-    e.preventDefault();
+form.addEventListener("submit", async (e) => {
 
-    const name =
-    document.getElementById(
-    "customerName"
-    ).value;
+  e.preventDefault();
 
-    const phone =
-    document.getElementById(
-    "customerPhone"
-    ).value;
+  const name = document.getElementById("customerName").value;
+  const phone = document.getElementById("customerPhone").value;
+  const address = document.getElementById("customerAddress").value;
 
-    const address =
-    document.getElementById(
-    "customerAddress"
-    ).value;
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    const cart =
-    JSON.parse(
-    localStorage.getItem("cart")
-    ) || [];
+  let total = 0;
+  let itemsText = "";
 
-    let total = 0;
+  cart.forEach(item => {
+    total += Number(item.price);
+    itemsText += `${item.name} - ₹${item.price}\n`;
+  });
 
-    let orderItems = "";
+  const orderId = generateOrderId();
 
-    cart.forEach(item => {
+  const orderData = {
+    orderId,
+    customerName: name,
+    phone,
+    address,
+    items: cart,
+    total,
+    status: "Pending",
+    createdAt: Timestamp.now()
+  };
 
-        total += Number(item.price);
+  // SAVE TO FIREBASE
+  await addDoc(collection(db, "orders"), orderData);
 
-        orderItems +=
-        `${item.name} - ₹${item.price}\n`;
+  // WHATSAPP MESSAGE
+  const message = `
+🛒 SAFI STORE ORDER
 
-    });
+Order ID: ${orderId}
+Name: ${name}
+Phone: ${phone}
+Address: ${address}
 
-    const orderId =
-    generateOrderId();
+Items:
+${itemsText}
 
-    const orderData = {
+Total: ₹${total}
+Status: Pending Verification
+`;
 
-        orderId: orderId,
-
-        customerName: name,
-
-        phone: phone,
-
-        address: address,
-
-        products: cart,
-
-        total: total,
-
-        status: "Pending",
-
-        orderDate:
-        new Date().toLocaleString()
-
-    };
-
-    localStorage.setItem(
-    "latestOrder",
-    JSON.stringify(orderData)
-    );
-
-    const message =
-
-`🛒 SAFI STORE NEW ORDER
-
-Order ID:
-${orderId}
-
-Customer Name:
-${name}
-
-Phone:
-${phone}
-
-Address:
-${address}
-
-Products:
-${orderItems}
-
-Total Amount:
-₹${total}
-
-Order Status:
-Pending Verification
-
-Please Verify Payment.`;
-
-    window.open(
+  window.open(
     `https://wa.me/919345314960?text=${encodeURIComponent(message)}`,
     "_blank"
-    );
+  );
 
-    window.location.href =
-    "thankyou.html";
+  localStorage.setItem("latestOrder", JSON.stringify(orderData));
 
+  window.location.href = "thankyou.html";
 });
