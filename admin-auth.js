@@ -22,10 +22,10 @@ window.adminLogin =
 async function(){
 
 const email =
-document.getElementById("adminEmail").value;
+document.getElementById("safeekestore@gmail.com").value;
 
 const password =
-document.getElementById("adminPassword").value;
+document.getElementById("safeek7879mrs").value;
 
 try{
 
