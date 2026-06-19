@@ -36,7 +36,7 @@ password
 );
 
 if(
-email === "admin@safistore.com"
+email === "safeekestore@gmail.com"
 ){
 
 window.location =
