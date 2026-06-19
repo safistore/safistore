@@ -1,66 +1,123 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Customer Orders</title>
+<title>SAFI STORE Admin Panel</title>
 
 <link rel="icon" href="safi.png">
-
-<link rel="stylesheet"
-href="admin.css">
+<link rel="stylesheet" href="admin.css">
 
 </head>
 
 <body>
 
+<header class="header">
+
+    <div class="logo-box">
+
+        <img src="safi.png" alt="SAFI STORE" class="logo">
+
+        <h1>SAFI STORE ADMIN</h1>
+
+    </div>
+
+    <nav>
+
+        <a href="dashboard.html">Dashboard</a>
+
+        <a href="#products">Products</a>
+
+        <a href="#orders">Orders</a>
+
+        <a href="index.html">Website</a>
+
+    </nav>
+
+</header>
+
 <div class="container">
 
-<h1>📦 Customer Orders</h1>
+    <!-- ADD PRODUCT -->
 
-<a href="dashboard.html"
-class="btn">
+    <section id="products">
 
-Dashboard
+        <h2>Add Product</h2>
 
-</a>
+        <div class="product-form">
 
-<div id="ordersContainer">
+            <input
+            type="text"
+            id="productName"
+            placeholder="Product Name">
 
-Loading Orders...
+            <textarea
+            id="productDescription"
+            placeholder="Product Description"></textarea>
+
+            <input
+            type="number"
+            id="productPrice"
+            placeholder="Product Price">
+
+            <input
+            type="text"
+            id="productImage"
+            placeholder="Main Image URL">
+
+            <input
+            type="text"
+            id="productSizes"
+            placeholder="Sizes (S,M,L or Standard)">
+
+            <input
+            type="text"
+            id="productColors"
+            placeholder="Colors (Black,Blue,White)">
+
+            <button onclick="addProduct()">
+                Add Product
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- PRODUCTS LIST -->
+
+    <section>
+
+        <h2>Products</h2>
+
+        <div id="productsContainer">
+
+            Loading Products...
+
+        </div>
+
+    </section>
+
+    <!-- ORDERS -->
+
+    <section id="orders">
+
+        <h2>Customer Orders</h2>
+
+        <div id="ordersContainer">
+
+            Loading Orders...
+
+        </div>
+
+    </section>
 
 </div>
 
-<h2>Add Product</h2>
-
-<input type="text" id="productName" placeholder="Product Name">
-
-<input type="text" id="productDescription" placeholder="Description">
-
-<input type="number" id="productPrice" placeholder="Price">
-
-<input type="text" id="productImage" placeholder="Main Image URL">
-
-<input type="text" id="productImages"
-placeholder="Extra Images URLs separated by comma">
-
-<input type="text" id="productSizes"
-placeholder="Sizes: S,M,L">
-
-<input type="text" id="productColors"
-placeholder="Colors: Black,Blue,White">
-
-<button onclick="addProduct()">
-Add Product
-</button>
-
-</div>
-
-<script type="module"
-src="admin.js"></script>
+<script type="module" src="admin.js"></script>
 
 </body>
+
 </html>
