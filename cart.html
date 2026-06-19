@@ -4,73 +4,54 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Cart - SAFI STORE</title>
+<title>SAFI STORE - Cart</title>
 
 <link rel="stylesheet" href="cart.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
-<header>
+<header class="header">
 
-    <div class="brand">
+    <h1>🛒 Shopping Cart</h1>
 
-        <img
-        src="safi.png"
-        alt="SAFI STORE"
-        class="logo-img">
-
-        <h2 class="site-title">
-            SAFI STORE
-        </h2>
-
-    </div>
-
-    <a href="index.html" class="back-btn">
-        ← Continue Shopping
+    <a href="products.html" class="back-btn">
+        Continue Shopping
     </a>
 
 </header>
 
-<section class="cart-section">
-
-    <h1>Your Shopping Cart</h1>
-
-    <p class="subtitle">
-        Review your selected products before payment.
-    </p>
+<main class="container">
 
     <div id="cartContainer">
 
-        <!-- PRODUCTS WILL LOAD HERE -->
-
     </div>
 
-    <div class="cart-summary">
+    <div class="summary">
+
+        <h2>Order Summary</h2>
 
         <div class="summary-row">
-
-            <span>Total Amount</span>
-
-            <h2 id="cartTotal">
-                ₹0
-            </h2>
-
+            <span>Total Items</span>
+            <span id="totalItems">0</span>
         </div>
 
-        <button
-        id="checkoutBtn"
-        onclick="goToPayment()">
+        <div class="summary-row total">
+            <span>Total Amount</span>
+            <span id="totalAmount">₹0</span>
+        </div>
 
-            Proceed To Payment
+        <button id="checkoutBtn">
+            Proceed to Checkout
+        </button>
 
+        <button id="clearCartBtn">
+            Clear Cart
         </button>
 
     </div>
 
-</section>
+</main>
 
 <script src="cart.js"></script>
 
