@@ -1,20 +1,15 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>SAFI STORE Admin Panel</title>
 
 <link rel="icon" href="safi.png">
-
 <link rel="stylesheet" href="admin.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 </head>
 
@@ -22,150 +17,104 @@
 
 <header class="header">
 
-```
-<div class="logo-box">
+    <div class="logo-box">
 
-    <img src="safi.png" alt="SAFI STORE" class="logo">
+        <img src="safi.png" alt="SAFI STORE" class="logo">
 
-    <h1>SAFI STORE ADMIN</h1>
+        <h1>SAFI STORE ADMIN</h1>
 
-</div>
+    </div>
 
-<nav>
+    <nav>
 
-    <a href="#dashboard">Dashboard</a>
+        <a href="dashboard.html">Dashboard</a>
 
-    <a href="#products">Products</a>
+        <a href="#products">Products</a>
 
-    <a href="#orders">Orders</a>
+        <a href="#orders">Orders</a>
 
-    <a href="index.html">Website</a>
+        <a href="index.html">Website</a>
 
-</nav>
-```
+    </nav>
 
 </header>
 
-<!-- DASHBOARD -->
+<div class="container">
 
-<section id="dashboard" class="stats">
+    <!-- ADD PRODUCT -->
 
-```
-<div class="card">
+    <section id="products">
 
-    <h2 id="totalOrders">0</h2>
+        <h2>Add Product</h2>
 
-    <p>Total Orders</p>
+        <div class="product-form">
 
-</div>
+            <input
+            type="text"
+            id="productName"
+            placeholder="Product Name">
 
-<div class="card">
+            <textarea
+            id="productDescription"
+            placeholder="Product Description"></textarea>
 
-    <h2 id="totalRevenue">₹0</h2>
+            <input
+            type="number"
+            id="productPrice"
+            placeholder="Product Price">
 
-    <p>Total Revenue</p>
+            <input
+            type="text"
+            id="productImage"
+            placeholder="Main Image URL">
 
-</div>
+            <input
+            type="text"
+            id="productSizes"
+            placeholder="Sizes (S,M,L or Standard)">
 
-<div class="card">
+            <input
+            type="text"
+            id="productColors"
+            placeholder="Colors (Black,Blue,White)">
 
-    <h2 id="totalProducts">0</h2>
+            <button onclick="addProduct()">
+                Add Product
+            </button>
 
-    <p>Total Products</p>
+        </div>
 
-</div>
-```
+    </section>
 
-</section>
+    <!-- PRODUCTS LIST -->
 
-<!-- ADD PRODUCT -->
+    <section>
 
-<section id="products" class="panel">
+        <h2>Products</h2>
 
-```
-<h2>Add Product</h2>
+        <div id="productsContainer">
 
-<div class="product-form">
+            Loading Products...
 
-    <input
-    type="text"
-    id="productName"
-    placeholder="Product Name">
+        </div>
 
-    <textarea
-    id="productDescription"
-    placeholder="Product Description"></textarea>
+    </section>
 
-    <input
-    type="number"
-    id="productPrice"
-    placeholder="Product Price">
+    <!-- ORDERS -->
 
-    <input
-    type="text"
-    id="productImage"
-    placeholder="Image URL">
+    <section id="orders">
 
-    <input
-    type="text"
-    id="productSizes"
-    placeholder="Sizes (S,M,L or Standard)">
+        <h2>Customer Orders</h2>
 
-    <input
-    type="text"
-    id="productColors"
-    placeholder="Colors (Black,Blue,White)">
+        <div id="ordersContainer">
 
-    <button onclick="addProduct()">
-        Add Product
-    </button>
+            Loading Orders...
 
-</div>
-```
+        </div>
 
-</section>
-
-<!-- PRODUCTS LIST -->
-
-<section class="panel">
-
-```
-<h2>Manage Products</h2>
-
-<div id="productsContainer">
-
-    Loading Products...
+    </section>
 
 </div>
-```
-
-</section>
-
-<!-- ORDERS -->
-
-<section id="orders" class="panel">
-
-```
-<h2>Customer Orders</h2>
-
-<div id="ordersContainer">
-
-    Loading Orders...
-
-</div>
-```
-
-</section>
-
-<footer>
-
-```
-<p>
-    © 2025 SAFI STORE Admin Dashboard
-</p>
-```
-
-</footer>
 
 <script type="module" src="admin.js"></script>
 

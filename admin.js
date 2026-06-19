@@ -211,13 +211,13 @@ Total:
 
 });
 
-document.getElementById(
-"totalRevenue"
-).innerText =
-"₹" + revenue;
+document.getElementById("totalRevenue").innerText = "₹" + revenue;
 
 }
 
 loadProducts();
+document.getElementById("totalProducts").innerText = snapshot.size;
 
 loadOrders();
+document.getElementById("totalOrders").innerText = snapshot.size;
+
