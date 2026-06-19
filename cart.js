@@ -1,178 +1,188 @@
-let cart =
-JSON.parse(
-localStorage.getItem("cart")
-) || [];
-
 const cartContainer =
-document.getElementById(
-"cartContainer"
-);
+document.getElementById("cartContainer");
 
-const cartTotal =
-document.getElementById(
-"cartTotal"
-);
+const totalItems =
+document.getElementById("totalItems");
+
+const totalAmount =
+document.getElementById("totalAmount");
 
 function loadCart(){
 
-    cartContainer.innerHTML = "";
+let cart =
+JSON.parse(localStorage.getItem("cart")) || [];
 
-    let total = 0;
+cartContainer.innerHTML = "";
 
-    if(cart.length === 0){
+if(cart.length === 0){
 
-        cartContainer.innerHTML =
+cartContainer.innerHTML = `
 
-        `
-        <div class="empty-cart">
+<div class="empty-cart">
 
-            <h2>Your Cart Is Empty</h2>
+<h2>Your Cart Is Empty</h2>
 
-            <p>
-            Add products from the store.
-            </p>
+<p>Add products from Products Page</p>
 
-        </div>
-        `;
+</div>
 
-        cartTotal.innerText = "₹0";
+`;
 
-        return;
-    }
+totalItems.innerText = "0";
+totalAmount.innerText = "₹0";
 
-    cart.forEach((item,index)=>{
-
-        total +=
-        item.price * item.qty;
-
-        cartContainer.innerHTML +=
-
-        `
-        <div class="cart-item">
-
-            <img
-            src="${item.image}"
-            alt="${item.name}">
-
-            <div class="item-details">
-
-                <h3>${item.name}</h3>
-
-                <p>
-                Size:
-                ${item.size}
-                </p>
-
-                <p>
-                Color:
-                ${item.color}
-                </p>
-
-                <div class="quantity-box">
-
-                    <button
-                    class="qty-btn"
-                    onclick="decreaseQty(${index})">
-
-                    -
-
-                    </button>
-
-                    <span class="qty">
-
-                    ${item.qty}
-
-                    </span>
-
-                    <button
-                    class="qty-btn"
-                    onclick="increaseQty(${index})">
-
-                    +
-
-                    </button>
-
-                </div>
-
-                <button
-                class="delete-btn"
-                onclick="removeItem(${index})">
-
-                Delete
-
-                </button>
-
-            </div>
-
-            <div class="item-price">
-
-                ₹${item.price * item.qty}
-
-            </div>
-
-        </div>
-        `;
-
-    });
-
-    cartTotal.innerText =
-    `₹${total}`;
+return;
 
 }
 
-function increaseQty(index){
+let grandTotal = 0;
+let itemCount = 0;
 
-    cart[index].qty++;
+cart.forEach((item,index)=>{
 
-    saveCart();
+const quantity =
+Number(item.quantity || 1);
+
+const price =
+Number(item.price || 0);
+
+const subtotal =
+price * quantity;
+
+grandTotal += subtotal;
+itemCount += quantity;
+
+cartContainer.innerHTML += `
+
+<div class="cart-item">
+
+<img
+src="${item.image}"
+alt="${item.name}">
+
+<div class="item-info">
+
+<h3>${item.name}</h3>
+
+<p class="price">
+₹${price}
+</p>
+
+<div class="quantity-box">
+
+<button onclick="decreaseQty(${index})">
+-
+</button>
+
+<span>
+${quantity}
+</span>
+
+<button onclick="increaseQty(${index})">
++
+</button>
+
+</div>
+
+<p>
+Subtotal:
+₹${subtotal}
+</p>
+
+<button
+class="remove-btn"
+onclick="removeItem(${index})">
+
+Remove
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+totalItems.innerText = itemCount;
+totalAmount.innerText = "₹" + grandTotal;
 
 }
 
-function decreaseQty(index){
+window.increaseQty = function(index){
 
-    if(cart[index].qty > 1){
+let cart =
+JSON.parse(localStorage.getItem("cart")) || [];
 
-        cart[index].qty--;
+cart[index].quantity =
+(cart[index].quantity || 1) + 1;
 
-    }
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
+);
 
-    saveCart();
+loadCart();
 
-}
+};
 
-function removeItem(index){
+window.decreaseQty = function(index){
 
-    cart.splice(index,1);
+let cart =
+JSON.parse(localStorage.getItem("cart")) || [];
 
-    saveCart();
+if((cart[index].quantity || 1) > 1){
 
-}
+cart[index].quantity--;
 
-function saveCart(){
+}else{
 
-    localStorage.setItem(
-    "cart",
-    JSON.stringify(cart)
-    );
-
-    loadCart();
-
-}
-
-function goToPayment(){
-
-    if(cart.length === 0){
-
-        alert(
-        "Your cart is empty!"
-        );
-
-        return;
-    }
-
-    window.location.href =
-    "payment.html";
+cart.splice(index,1);
 
 }
+
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
+);
+
+loadCart();
+
+};
+
+window.removeItem = function(index){
+
+let cart =
+JSON.parse(localStorage.getItem("cart")) || [];
+
+cart.splice(index,1);
+
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
+);
+
+loadCart();
+
+};
+
+document
+.getElementById("clearCartBtn")
+.addEventListener("click",()=>{
+
+localStorage.removeItem("cart");
+
+loadCart();
+
+});
+
+document
+.getElementById("checkoutBtn")
+.addEventListener("click",()=>{
+
+alert("Checkout Coming Soon");
+
+});
 
 loadCart();
