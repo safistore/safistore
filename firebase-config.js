@@ -6,7 +6,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyAszpqCGgPq-a90hcpy7lO5VrpNRfMxSQ",
   authDomain: "safistore-c956b.firebaseapp.com",
   projectId: "safistore-c956b",
-  storageBucket: "safistore-c956b.firebasestorage.app",
+  storageBucket: "safistore-c956b.appspot.com",
   messagingSenderId: "977849577729",
   appId: "1:977849577729:web:4dd4ce0f93b31ee6e2eb00"
 };
