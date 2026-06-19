@@ -22,8 +22,27 @@ background:#f5f5f5;
 header{
 background:#111;
 color:white;
-padding:15px;
-text-align:center;
+padding:15px 20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+header h1{
+font-size:24px;
+}
+
+.cart-link{
+color:white;
+text-decoration:none;
+font-size:18px;
+background:#28a745;
+padding:10px 15px;
+border-radius:5px;
+}
+
+.cart-link:hover{
+background:#218838;
 }
 
 .products-container{
@@ -38,6 +57,11 @@ background:white;
 border-radius:10px;
 overflow:hidden;
 box-shadow:0 2px 10px rgba(0,0,0,.1);
+transition:0.3s;
+}
+
+.product-card:hover{
+transform:translateY(-5px);
 }
 
 .product-card img{
@@ -79,6 +103,7 @@ color:white;
 border:none;
 cursor:pointer;
 font-size:16px;
+border-radius:5px;
 }
 
 .buy-btn:hover{
@@ -92,17 +117,20 @@ font-size:20px;
 }
 
 </style>
-
 </head>
 <body>
 
 <header>
+
 <h1>SAFI STORE</h1>
+
+<a href="cart.html" class="cart-link">
+🛒 Cart
+</a>
+
 </header>
 
-<div
-id="productsContainer"
-class="products-container">
+<div id="productsContainer" class="products-container">
 
 <div class="loading">
 Loading Products...
@@ -132,8 +160,40 @@ appId: "1:977849577729:web:4dd4ce0f93b31ee6e2eb00"
 };
 
 const app = initializeApp(firebaseConfig);
-
 const db = getFirestore(app);
+
+window.addToCart = function(id,name,image,price){
+
+let cart =
+JSON.parse(localStorage.getItem("cart")) || [];
+
+const existingProduct =
+cart.find(item => item.id === id);
+
+if(existingProduct){
+
+existingProduct.quantity += 1;
+
+}else{
+
+cart.push({
+id:id,
+name:name,
+image:image,
+price:Number(price),
+quantity:1
+});
+
+}
+
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
+);
+
+alert(name + " added to cart");
+
+};
 
 async function loadProducts(){
 
@@ -150,7 +210,7 @@ collection(db,"products")
 if(snapshot.empty){
 
 container.innerHTML = `
-<h2 style="text-align:center;">
+<h2 style="text-align:center;width:100%;">
 No Products Found
 </h2>
 `;
@@ -167,8 +227,7 @@ container.innerHTML += `
 
 <div class="product-card">
 
-<img src="${data.image}"
-alt="${data.name}">
+<img src="${data.image}" alt="${data.name}">
 
 <div class="product-info">
 
@@ -182,19 +241,24 @@ alt="${data.name}">
 
 <div class="sizes">
 <b>Sizes:</b>
-${data.sizes?.join(", ") || "Standard"}
+${data.sizes ? data.sizes.join(", ") : "Standard"}
 </div>
 
 <div class="colors">
 <b>Colors:</b>
-${data.colors?.join(", ") || "Default"}
+${data.colors ? data.colors.join(", ") : "Default"}
 </div>
 
 <button
 class="buy-btn"
-onclick="alert('Product: ${data.name}')">
+onclick='addToCart(
+"${product.id}",
+"${data.name}",
+"${data.image}",
+"${data.price}"
+)'>
 
-Buy Now
+Add To Cart
 
 </button>
 
