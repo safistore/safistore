@@ -1,89 +1,34 @@
-let cart =
-JSON.parse(localStorage.getItem("cart")) || [];
+import { db } from "./firebase-config.js";
+import { collection, addDoc } 
+from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
-const cartContainer =
-document.getElementById("cartContainer");
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-const totalAmount =
-document.getElementById("totalAmount");
+const box = document.getElementById("cart");
 
-function renderCart(){
-
-cartContainer.innerHTML = "";
-
-let total = 0;
-
-if(cart.length === 0){
-
-cartContainer.innerHTML =
-"<h3>Your Cart Is Empty</h3>";
-
-totalAmount.innerText =
-"Total: ₹0";
-
-return;
-
-}
-
-cart.forEach((product,index)=>{
-
-total += Number(product.price);
-
-cartContainer.innerHTML += `
-
-<div class="cart-item">
-
-<div>
-<h3>${product.name}</h3>
-<p>₹${product.price}</p>
-</div>
-
-<button
-class="remove-btn"
-onclick="removeItem(${index})">
-Remove
-</button>
-
-</div>
-
-`;
-
+cart.forEach(item => {
+  box.innerHTML += `<p>${item.name} - ₹${item.price}</p>`;
 });
 
-totalAmount.innerText =
-`Total: ₹${total}`;
-
+function orderId() {
+  const d = new Date();
+  return `SAFI-${d.getFullYear()}${d.getMonth()+1}${d.getDate()}-${Math.floor(Math.random()*9000)}`;
 }
 
-function removeItem(index){
+window.order = async function() {
 
-cart.splice(index,1);
+  const id = orderId();
 
-localStorage.setItem(
-"cart",
-JSON.stringify(cart)
-);
+  await addDoc(collection(db, "orders"), {
+    orderId: id,
+    items: cart,
+    status: "Pending",
+    total: cart.reduce((a,b)=>a+b.price,0)
+  });
 
-renderCart();
+  localStorage.removeItem("cart");
 
-}
+  alert("Order placed: " + id);
 
-function goToPayment(){
-
-if(cart.length === 0){
-
-alert("Your cart is empty");
-
-return;
-
-}
-
-window.location.href =
-"payment.html";
-
-}
-
-window.removeItem = removeItem;
-window.goToPayment = goToPayment;
-
-renderCart();
+  window.location.href = "thankyou.html";
+};
