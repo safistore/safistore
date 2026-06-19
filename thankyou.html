@@ -1,13 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>Thank You</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Placed - Safi Store</title>
 
 <style>
 
@@ -19,78 +15,65 @@ font-family:Poppins,sans-serif;
 }
 
 body{
-background:#0f172a;
-color:white;
-
+background:#f1f3f6;
 display:flex;
 justify-content:center;
 align-items:center;
-
-min-height:100vh;
+height:100vh;
 padding:20px;
 }
 
-.card{
-
-max-width:600px;
-
-background:#111827;
-
-padding:50px;
-
-border-radius:25px;
-
+.container{
+background:white;
+padding:40px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,.1);
 text-align:center;
-
-border:
-1px solid rgba(
-255,
-255,
-255,
-.08
-);
-
-box-shadow:
-0 15px 40px rgba(
-0,
-0,
-0,
-.35
-);
-
+max-width:600px;
+width:100%;
 }
 
-h1{
-font-size:42px;
+.logo{
+width:100px;
 margin-bottom:20px;
 }
 
-p{
-color:#cbd5e1;
-line-height:1.8;
-margin-bottom:30px;
+.success{
+font-size:70px;
+margin-bottom:15px;
 }
 
-a{
+h1{
+color:#28a745;
+margin-bottom:15px;
+}
 
+p{
+margin-bottom:12px;
+line-height:1.6;
+color:#555;
+}
+
+.btn{
 display:inline-block;
-
-padding:15px 30px;
-
-background:
-linear-gradient(
-45deg,
-#3b82f6,
-#8b5cf6
-);
-
+margin-top:20px;
+padding:12px 25px;
+background:#2874f0;
 color:white;
-
 text-decoration:none;
-
-border-radius:12px;
-
+border-radius:5px;
 font-weight:600;
+}
+
+.btn:hover{
+background:#0b5ed7;
+}
+
+.order-box{
+background:#f8f9fa;
+padding:15px;
+margin-top:20px;
+border-radius:10px;
 }
 
 </style>
@@ -98,29 +81,51 @@ font-weight:600;
 </head>
 <body>
 
-<div class="card">
+<div class="container">
 
-<h1>
-🎉 Thank You!
-</h1>
+<img src="safi.png" class="logo" alt="Safi Store">
+
+<div class="success">✅</div>
+
+<h1>Order Placed Successfully</h1>
 
 <p>
-
-Your order request has been submitted successfully.
-
-Please send your payment screenshot in WhatsApp if you have not already done so.
-
-We will verify the payment and contact you shortly.
-
+Thank you for shopping with Safi Store.
 </p>
 
-<a href="index.html">
+<p>
+Your order request has been submitted successfully.
+</p>
 
+<p>
+Please send your payment screenshot in WhatsApp if you have not already shared it.
+</p>
+
+<div class="order-box">
+
+<p><strong>Order Status:</strong> Pending Verification</p>
+
+<p>
+Our team will verify your payment and send updates to your WhatsApp number.
+</p>
+
+</div>
+
+<p>
+You will receive confirmation, shipping updates, and delivery updates through WhatsApp.
+</p>
+
+<a href="products.html" class="btn">
 Continue Shopping
-
 </a>
 
 </div>
+
+<script>
+
+localStorage.removeItem("cart");
+
+</script>
 
 </body>
 </html>

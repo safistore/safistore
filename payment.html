@@ -3,156 +3,72 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Checkout - SAFI STORE</title>
-
-<link rel="icon" href="safi.png">
+<title>Payment - Safi Store</title>
 
 <link rel="stylesheet" href="payment.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
-<div class="container">
+<div class="payment-container">
 
-    <div class="checkout-box">
+    <h1>Safi Store Payment</h1>
 
-        <div class="left-section">
+    <div class="payment-box">
 
-            <h2>Shipping Details</h2>
+        <h2>Scan QR To Pay</h2>
 
-            <form id="shippingForm">
+        <img src="qr.jpeg" alt="QR Payment" class="qr-image">
 
-                <input
+        <h3>UPI ID</h3>
+
+        <div class="upi-box">
+
+            <input
                 type="text"
-                id="customerName"
-                placeholder="Full Name"
-                required>
+                id="upiId"
+                value="9345314960@axl"
+                readonly
+            >
 
-                <input
-                type="tel"
-                id="phone"
-                placeholder="Phone Number"
-                required>
-
-                <input
-                type="email"
-                id="email"
-                placeholder="Email Address">
-
-                <textarea
-                id="address"
-                placeholder="Full Address"
-                required></textarea>
-
-                <input
-                type="text"
-                id="city"
-                placeholder="City"
-                required>
-
-                <input
-                type="text"
-                id="state"
-                placeholder="State"
-                required>
-
-                <input
-                type="text"
-                id="pincode"
-                placeholder="Pincode"
-                required>
-
-            </form>
-
-            <div class="coupon-box">
-
-                <input
-                type="text"
-                id="couponCode"
-                placeholder="Enter Coupon Code">
-
-                <button onclick="applyCoupon()">
-                    Apply
-                </button>
-
-            </div>
-
-        </div>
-
-        <div class="right-section">
-
-            <h2>Order Summary</h2>
-
-            <p class="order-id">
-                Order ID:
-                <span id="orderId"></span>
-            </p>
-
-            <div id="orderSummary">
-
-            </div>
-
-            <div class="summary">
-
-                <div class="row">
-                    <span>Subtotal</span>
-                    <span id="subtotal">₹0</span>
-                </div>
-
-                <div class="row">
-                    <span>Discount</span>
-                    <span id="discount">₹0</span>
-                </div>
-
-                <div class="row">
-                    <span>Delivery</span>
-                    <span id="deliveryCharge">₹50</span>
-                </div>
-
-                <div class="row total">
-                    <span>Total</span>
-                    <span id="finalTotal">₹0</span>
-                </div>
-
-            </div>
-
-            <div class="payment-section">
-
-                <h3>Scan & Pay</h3>
-
-                <img
-                src="qr.jpeg"
-                alt="QR Code"
-                class="qr-image">
-
-                <div class="upi-box">
-
-                    <input
-                    type="text"
-                    id="upiId"
-                    value="9345314960@axl"
-                    readonly>
-
-                    <button onclick="copyUPI()">
-                        Copy
-                    </button>
-
-                </div>
-
-            </div>
-
-            <button
-            class="complete-btn"
-            onclick="completePayment()">
-
-                Complete Payment
-
+            <button onclick="copyUPI()">
+                Copy
             </button>
 
         </div>
+
+    </div>
+
+    <div class="shipping-box">
+
+        <h2>Shipping Details</h2>
+
+        <form id="orderForm">
+
+            <input
+                type="text"
+                id="customerName"
+                placeholder="Full Name"
+                required
+            >
+
+            <input
+                type="tel"
+                id="customerPhone"
+                placeholder="WhatsApp Number"
+                required
+            >
+
+            <textarea
+                id="customerAddress"
+                placeholder="Full Shipping Address"
+                required
+            ></textarea>
+
+            <button type="submit">
+                Place Order
+            </button>
+
+        </form>
 
     </div>
 

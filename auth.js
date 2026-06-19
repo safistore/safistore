@@ -1,85 +1,105 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+import { auth, db } from "./firebase-config.js";
 
 import {
-getAuth,
-createUserWithEmailAndPassword,
-signInWithEmailAndPassword
-}
-from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 
-const firebaseConfig = {
-    apiKey: "AIzaSyAszpqCGgqPq-a90hcpy7lO5VrpNRfMxSQ",
-    authDomain: "safistore-c956b.firebaseapp.com",
-    projectId: "safistore-c956b",
-    storageBucket: "safistore-c956b.firebasestorage.app",
-    messagingSenderId: "977849577729",
-    appId: "1:977849577729:web:4dd4ce0f93b31ee6e2eb00"
-  };
+import {
+    doc,
+    setDoc
+} from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
-const app =
-initializeApp(firebaseConfig);
+/* ==========================
+   USER REGISTRATION
+========================== */
 
-const auth =
-getAuth(app);
+const registerForm = document.getElementById("registerForm");
 
-window.registerUser =
-async function(){
+if (registerForm) {
 
-const email =
-document.getElementById("email").value;
+    registerForm.addEventListener("submit", async (e) => {
 
-const password =
-document.getElementById("password").value;
+        e.preventDefault();
 
-try{
+        const name = document.getElementById("name").value.trim();
 
-await createUserWithEmailAndPassword(
-auth,
-email,
-password
-);
+        const email = document.getElementById("email").value.trim();
 
-alert("Registration Successful");
+        const password = document.getElementById("password").value;
 
-window.location =
-"login.html";
+        try {
 
-}
-catch(error){
+            const userCredential =
+                await createUserWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
 
-alert(error.message);
+            const user = userCredential.user;
 
-}
+            await setDoc(doc(db, "users", user.uid), {
 
-};
+                name: name,
+                email: email,
+                role: "user",
+                createdAt: new Date().toISOString()
 
-window.loginUser =
-async function(){
+            });
 
-const email =
-document.getElementById("email").value;
+            alert("Account Created Successfully");
 
-const password =
-document.getElementById("password").value;
+            window.location.href = "login.html";
 
-try{
+        }
+        catch (error) {
 
-await signInWithEmailAndPassword(
-auth,
-email,
-password
-);
+            alert(error.message);
 
-alert("Login Successful");
+        }
 
-window.location =
-"products.html";
-
-}
-catch(error){
-
-alert(error.message);
+    });
 
 }
 
-};
+/* ==========================
+   USER LOGIN
+========================== */
+
+const loginForm = document.getElementById("loginForm");
+
+if (loginForm) {
+
+    loginForm.addEventListener("submit", async (e) => {
+
+        e.preventDefault();
+
+        const email =
+            document.getElementById("loginEmail").value.trim();
+
+        const password =
+            document.getElementById("loginPassword").value;
+
+        try {
+
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+            alert("Login Successful");
+
+            window.location.href = "products.html";
+
+        }
+        catch (error) {
+
+            alert(error.message);
+
+        }
+
+    });
+
+}

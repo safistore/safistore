@@ -1,56 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SAFI STORE Dashboard</title>
+<title>Dashboard - Safi Store</title>
 
-<link rel="icon" href="safi.png">
 <link rel="stylesheet" href="dashboard.css">
 </head>
-
 <body>
 
-<div class="container">
+<header class="dashboard-header">
 
-<h1>📊 SAFI STORE Dashboard</h1>
+    <h1>Safi Store Dashboard</h1>
 
-<div class="stats">
+    <div>
+        <a href="admin.html">Manage Products</a>
+        <a href="index.html">View Store</a>
+    </div>
 
-<div class="card">
-<h3>Total Orders</h3>
-<h2 id="totalOrders">0</h2>
-</div>
+</header>
 
-<div class="card">
-<h3>Total Revenue</h3>
-<h2 id="totalRevenue">₹0</h2>
-</div>
+<section class="stats">
 
-<div class="card">
-<h3>Pending Orders</h3>
-<h2 id="pendingOrders">0</h2>
-</div>
+    <div class="card">
+        <h2 id="totalProducts">0</h2>
+        <p>Total Products</p>
+    </div>
 
-<div class="card">
-<h3>Delivered Orders</h3>
-<h2 id="deliveredOrders">0</h2>
-</div>
+    <div class="card">
+        <h2 id="totalOrders">0</h2>
+        <p>Total Orders</p>
+    </div>
 
-<div class="card">
-<h3>Total Customers</h3>
-<h2 id="totalCustomers">0</h2>
-</div>
+    <div class="card">
+        <h2 id="totalRevenue">₹0</h2>
+        <p>Total Revenue</p>
+    </div>
 
-</div>
+</section>
 
-<a href="admin.html" class="btn">
-View Orders
-</a>
+<section class="orders-section">
 
-</div>
+    <h2>Recent Orders</h2>
 
-<script type="module" src="dashboard.js"></script>
+    <div id="ordersContainer">
+
+        <p>No Orders Available</p>
+
+    </div>
+
+</section>
+
+<script src="dashboard.js"></script>
 
 </body>
 </html>

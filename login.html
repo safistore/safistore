@@ -1,54 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - Safi Store</title>
 
-<title>User Login</title>
-
-<link rel="stylesheet"
-href="auth.css">
-
+<link rel="stylesheet" href="auth.css">
 </head>
-
 <body>
 
-<div class="auth-box">
+<div class="auth-container">
 
-<h1>User Login</h1>
+    <div class="auth-box">
 
-<input
-type="email"
-id="email"
-placeholder="Email">
+        <img src="safi.png" class="auth-logo" alt="Safi Store">
 
-<input
-type="password"
-id="password"
-placeholder="Password">
+        <h2>Login</h2>
 
-<button onclick="loginUser()">
-Login
-</button>
+        <form id="loginForm">
 
-<p>
+            <input
+                type="email"
+                id="loginEmail"
+                placeholder="Email Address"
+                required
+            >
 
-Don't have an account?
+            <input
+                type="password"
+                id="loginPassword"
+                placeholder="Password"
+                required
+            >
 
-<a href="register.html">
+            <button type="submit">
+                Login
+            </button>
 
-Register
+        </form>
 
-</a>
+        <p>
+            Don't have an account?
+            <a href="registered.html">Register</a>
+        </p>
 
-</p>
+    </div>
 
 </div>
 
-<script type="module"
-src="auth.js"></script>
+<script type="module" src="auth.js"></script>
 
 </body>
 </html>

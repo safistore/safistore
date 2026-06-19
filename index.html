@@ -1,253 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAFI STORE</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safi Store</title>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-    <!-- HEADER -->
+<header class="header">
 
-    <header>
+    <div class="logo-section">
+        <img src="safi.png" alt="Safi Store Logo" class="logo">
+        <h2>Safi Store</h2>
+    </div>
 
-        <div class="brand">
+    <div class="search-bar">
+        <input type="text" placeholder="Search products...">
+        <button>Search</button>
+    </div>
 
-            <img src="safi.png"
-                 alt="SAFI STORE"
-                 class="logo-img">
-
-            <h2 class="site-title">
-                SAFI STORE
-            </h2>
-
-        </div>
-
-     
-  
     <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="login.html">Login</a>
+        <a href="cart.html">Cart</a>
+    </nav>
 
-    <a href="index.html">Home</a>
+</header>
 
-    <a href="products.html">Products</a>
-
-    <a href="cart.html">Cart</a>
-
-    <a href="login.html" class="login-btn">
-        👤 Login
-    </a>
-
-    <a href="admin-login.html" class="admin-btn">
-        🔒 Admin
-    </a>
-
-</nav>
-
-
-
-
-        <a href="cart.html" class="cart-btn">
-            🛒 Cart
-        </a>
-
-    </header>
-
-    <!-- HERO -->
-
-   
 <section class="hero">
 
-    <h1>Welcome To SAFI STORE</h1>
+    <div class="hero-content">
+        <h1>Welcome to Safi Store</h1>
+        <p>Best Deals • Fast Delivery • Secure Shopping</p>
 
-    <p>
-    Premium Shopping Experience
-    </p>
-
-    <a href="products.html"
-    class="shop-btn">
-
-    Shop Now
-
-    </a>
+        <a href="products.html" class="shop-btn">
+            Shop Now
+        </a>
+    </div>
 
 </section>
 
-    <!-- SEARCH -->
+<section class="categories">
 
-    <div class="search-container">
+    <h2>Shop By Category</h2>
 
-        <input
-            type="text"
-            id="searchInput"
-            placeholder="🔍 Search Products..."
-            onkeyup="searchProducts()">
+    <div class="category-grid">
+
+        <div class="category-card">📱 Mobiles</div>
+        <div class="category-card">💻 Electronics</div>
+        <div class="category-card">👕 Fashion</div>
+        <div class="category-card">🏠 Home</div>
+        <div class="category-card">📚 Books</div>
+        <div class="category-card">⚽ Sports</div>
 
     </div>
 
-    <!-- PRODUCTS -->
+</section>
 
-    <section class="products">
+<section class="featured">
 
-        <!-- PRODUCT 1 -->
+    <h2>Featured Products</h2>
 
-        <div class="product-card">
-
-            <img src="products/watch.jpg" alt="Watch">
-
-            <h3>Premium Watch</h3>
-
-            <p>Luxury waterproof wrist watch.</p>
-
-            <h4>₹999</h4>
-
-            <select id="size1">
-                <option>Standard</option>
-            </select>
-
-            <select id="color1">
-                <option>Black</option>
-                <option>Silver</option>
-                <option>Gold</option>
-            </select>
-
-            <button onclick="addProduct(
-                1,
-                'Premium Watch',
-                999,
-                'products/watch.jpg',
-                'size1',
-                'color1'
-            )">
-                Add To Cart
-            </button>
-
-        </div>
-
-        <!-- PRODUCT 2 -->
+    <div class="product-grid">
 
         <div class="product-card">
-
-            <img src="products/bag.jpg" alt="Bag">
-
-            <h3>Travel Bag</h3>
-
-            <p>Premium quality travel backpack.</p>
-
-            <h4>₹1299</h4>
-
-            <select id="size2">
-                <option>Small</option>
-                <option>Medium</option>
-                <option>Large</option>
-            </select>
-
-            <select id="color2">
-                <option>Black</option>
-                <option>Blue</option>
-            </select>
-
-            <button onclick="addProduct(
-                2,
-                'Travel Bag',
-                1299,
-                'products/bag.jpg',
-                'size2',
-                'color2'
-            )">
-                Add To Cart
-            </button>
-
+            <h3>Smart Phone</h3>
+            <p>Starting ₹9,999</p>
         </div>
-
-        <!-- PRODUCT 3 -->
 
         <div class="product-card">
-
-            <img src="products/headphone.jpg" alt="Headphone">
-
-            <h3>Wireless Headphone</h3>
-
-            <p>Bluetooth Noise Cancelling Headphone.</p>
-
-            <h4>₹1999</h4>
-
-            <select id="size3">
-                <option>Standard</option>
-            </select>
-
-            <select id="color3">
-                <option>Black</option>
-                <option>White</option>
-            </select>
-
-            <button onclick="addProduct(
-                3,
-                'Wireless Headphone',
-                1999,
-                'products/headphone.jpg',
-                'size3',
-                'color3'
-            )">
-                Add To Cart
-            </button>
-
+            <h3>Laptop</h3>
+            <p>Starting ₹29,999</p>
         </div>
-
-        <!-- PRODUCT 4 -->
 
         <div class="product-card">
-
-            <img src="products/bottle.jpg" alt="Bottle">
-
-            <h3>Water Bottle</h3>
-
-            <p>Premium Stainless Steel Bottle.</p>
-
-            <h4>₹249</h4>
-
-            <select id="size4">
-                <option>500ml</option>
-                <option>750ml</option>
-                <option>1L</option>
-            </select>
-
-            <select id="color4">
-                <option>Black</option>
-                <option>Silver</option>
-            </select>
-
-            <button onclick="addProduct(
-                4,
-                'Water Bottle',
-                249,
-                'products/bottle.jpg',
-                'size4',
-                'color4'
-            )">
-                Add To Cart
-            </button>
-
+            <h3>Headphones</h3>
+            <p>Starting ₹999</p>
         </div>
 
-    </section>
+        <div class="product-card">
+            <h3>Smart Watch</h3>
+            <p>Starting ₹1,999</p>
+        </div>
 
-    <!-- FOOTER -->
+    </div>
 
-    <footer>
+</section>
 
-        <p>
-            © 2025 SAFI STORE. All Rights Reserved.
-        </p>
+<section class="why-us">
 
-    </footer>
+    <h2>Why Choose Safi Store?</h2>
 
-    <script src="script.js"></script>
+    <div class="features">
+
+        <div>🚚 Fast Delivery</div>
+        <div>🔒 Secure Payments</div>
+        <div>💯 Genuine Products</div>
+        <div>📞 Customer Support</div>
+
+    </div>
+
+</section>
+
+<footer>
+
+    <h3>Safi Store</h3>
+
+    <p>UPI Payments Accepted</p>
+
+    <p>Contact: 9345314960</p>
+
+    <p>© 2026 Safi Store. All Rights Reserved.</p>
+
+</footer>
+
+<script src="script.js"></script>
 
 </body>
 </html>

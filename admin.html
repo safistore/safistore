@@ -1,123 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel - Safi Store</title>
 
-<title>SAFI STORE Admin Panel</title>
-
-<link rel="icon" href="safi.png">
 <link rel="stylesheet" href="admin.css">
-
 </head>
-
 <body>
 
-<header class="header">
+<div class="admin-dashboard">
 
-    <div class="logo-box">
+    <header class="admin-header">
 
-        <img src="safi.png" alt="SAFI STORE" class="logo">
+        <div>
+            <h1>Safi Store Admin</h1>
+        </div>
 
-        <h1>SAFI STORE ADMIN</h1>
+        <div>
+            <a href="dashboard.html">Dashboard</a>
+            <button onclick="logoutAdmin()">Logout</button>
+        </div>
 
-    </div>
+    </header>
 
-    <nav>
-
-        <a href="dashboard.html">Dashboard</a>
-
-        <a href="#products">Products</a>
-
-        <a href="#orders">Orders</a>
-
-        <a href="index.html">Website</a>
-
-    </nav>
-
-</header>
-
-<div class="container">
-
-    <!-- ADD PRODUCT -->
-
-    <section id="products">
+    <div class="product-form">
 
         <h2>Add Product</h2>
 
-        <div class="product-form">
-
-            <input
+        <input
             type="text"
             id="productName"
-            placeholder="Product Name">
+            placeholder="Product Name"
+        >
 
-            <textarea
-            id="productDescription"
-            placeholder="Product Description"></textarea>
-
-            <input
+        <input
             type="number"
             id="productPrice"
-            placeholder="Product Price">
+            placeholder="Product Price"
+        >
 
-            <input
+        <input
             type="text"
             id="productImage"
-            placeholder="Main Image URL">
+            placeholder="Product Image URL"
+        >
 
-            <input
-            type="text"
-            id="productSizes"
-            placeholder="Sizes (S,M,L or Standard)">
+        <button onclick="addProduct()">
+            Add Product
+        </button>
 
-            <input
-            type="text"
-            id="productColors"
-            placeholder="Colors (Black,Blue,White)">
+    </div>
 
-            <button onclick="addProduct()">
-                Add Product
-            </button>
-
-        </div>
-
-    </section>
-
-    <!-- PRODUCTS LIST -->
-
-    <section>
+    <div class="product-list">
 
         <h2>Products</h2>
 
-        <div id="productsContainer">
+        <div id="adminProducts"></div>
 
-            Loading Products...
-
-        </div>
-
-    </section>
-
-    <!-- ORDERS -->
-
-    <section id="orders">
-
-        <h2>Customer Orders</h2>
-
-        <div id="ordersContainer">
-
-            Loading Orders...
-
-        </div>
-
-    </section>
+    </div>
 
 </div>
 
-<script type="module" src="admin.js"></script>
+<script src="admin.js"></script>
 
 </body>
-
 </html>

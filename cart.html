@@ -3,55 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>SAFI STORE - Cart</title>
+<title>Cart - Safi Store</title>
 
 <link rel="stylesheet" href="cart.css">
-
 </head>
 <body>
 
 <header class="header">
 
-    <h1>🛒 Shopping Cart</h1>
+    <div class="logo-box">
+        <img src="safi.png" alt="Logo">
+        <h2>Safi Store</h2>
+    </div>
 
-    <a href="products.html" class="back-btn">
-        Continue Shopping
-    </a>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+    </nav>
 
 </header>
 
-<main class="container">
+<section class="cart-section">
 
-    <div id="cartContainer">
+    <h1>Your Cart</h1>
 
-    </div>
+    <div id="cartContainer"></div>
 
-    <div class="summary">
+    <div class="cart-summary">
 
-        <h2>Order Summary</h2>
+        <h2 id="totalAmount">Total: ₹0</h2>
 
-        <div class="summary-row">
-            <span>Total Items</span>
-            <span id="totalItems">0</span>
-        </div>
-
-        <div class="summary-row total">
-            <span>Total Amount</span>
-            <span id="totalAmount">₹0</span>
-        </div>
-
-        <button id="checkoutBtn">
-            Proceed to Checkout
-        </button>
-
-        <button id="clearCartBtn">
-            Clear Cart
+        <button onclick="goToPayment()">
+            Proceed To Payment
         </button>
 
     </div>
 
-</main>
+</section>
 
 <script src="cart.js"></script>
 

@@ -1,64 +1,32 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+const adminForm = document.getElementById("adminLoginForm");
 
-import {
-getAuth,
-signInWithEmailAndPassword
-}
-from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+if (adminForm) {
 
-const firebaseConfig = {
-    apiKey: "AIzaSyAszpqCGgqPq-a90hcpy7lO5VrpNRfMxSQ",
-    authDomain: "safistore-c956b.firebaseapp.com",
-    projectId: "safistore-c956b",
-    storageBucket: "safistore-c956b.firebasestorage.app",
-    messagingSenderId: "977849577729",
-    appId: "1:977849577729:web:4dd4ce0f93b31ee6e2eb00"
-  };
+    adminForm.addEventListener("submit", function (e) {
 
-const app =
-initializeApp(firebaseConfig);
+        e.preventDefault();
 
-const auth =
-getAuth(app);
+        const email = document.getElementById("adminEmail").value.trim();
+        const password = document.getElementById("adminPassword").value;
 
-window.adminLogin =
-async function(){
+        if (
+            email === "safeekestore@gmail.com" &&
+            password === "safeek7879mrs"
+        ) {
 
-const email =
-document.getElementById("email").value;
+            localStorage.setItem("adminLoggedIn", "true");
+            localStorage.setItem("adminEmail", email);
 
-const password =
-document.getElementById("password").value;
+            alert("Admin Login Successful");
 
-try{
+            window.location.href = "admin.html";
 
-await signInWithEmailAndPassword(
-auth,
-email,
-password
-);
+        } else {
 
-if(
-email === "safeekestore@gmail.com"
-){
+            alert("Invalid Admin Email or Password");
 
-window.location =
-"dashboard.html";
+        }
+
+    });
 
 }
-else{
-
-alert(
-"Access Denied"
-);
-
-}
-
-}
-catch(error){
-
-alert(error.message);
-
-}
-
-};
