@@ -1,80 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Payment - Safi Store</title>
-
-<link rel="stylesheet" href="payment.css">
+  <meta charset="UTF-8">
+  <title>Payment - Safi Store</title>
+  <link rel="stylesheet" href="payment.css">
 </head>
+
 <body>
 
-<div class="payment-container">
+  <header>
+    <h2>💳 Payment Page</h2>
+  </header>
 
-    <h1>Safi Store Payment</h1>
+  <!-- ORDER SUMMARY -->
+  <section class="summary">
+    <h3>Order Summary</h3>
+    <div id="orderBox"></div>
+  </section>
 
-    <div class="payment-box">
+  <!-- PAYMENT SECTION -->
+  <section class="payment">
+    <h3>Scan & Pay</h3>
 
-        <h2>Scan QR To Pay</h2>
+    <img src="qr.jpeg" width="200" alt="UPI QR Code">
 
-        <img src="qr.jpeg" alt="QR Payment" class="qr-image">
+    <p><b>UPI ID:</b> 9345314960@axl</p>
 
-        <h3>UPI ID</h3>
+    <button onclick="placeOrder()" class="btn">
+      Place Order
+    </button>
+  </section>
 
-        <div class="upi-box">
-
-            <input
-                type="text"
-                id="upiId"
-                value="9345314960@axl"
-                readonly
-            >
-
-            <button onclick="copyUPI()">
-                Copy
-            </button>
-
-        </div>
-
-    </div>
-
-    <div class="shipping-box">
-
-        <h2>Shipping Details</h2>
-
-        <form id="orderForm">
-
-            <input
-                type="text"
-                id="customerName"
-                placeholder="Full Name"
-                required
-            >
-
-            <input
-                type="tel"
-                id="customerPhone"
-                placeholder="WhatsApp Number"
-                required
-            >
-
-            <textarea
-                id="customerAddress"
-                placeholder="Full Shipping Address"
-                required
-            ></textarea>
-
-            <button type="submit">
-                Place Order
-            </button>
-
-        </form>
-
-    </div>
-
-</div>
-
-<script type="module" src="payment.js"></script>
+  <!-- FIREBASE PAYMENT LOGIC -->
+  <script type="module" src="/payment.js"></script>
 
 </body>
 </html>

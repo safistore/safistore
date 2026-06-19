@@ -3,13 +3,12 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth
 import { getFirestore } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDqDVIXo50D7rtTploSCyGWQG0kbiszsmw",
-  authDomain: "safistore-v3.firebaseapp.com",
-  projectId: "safistore-v3",
-  storageBucket: "safistore-v3.appspot.com",
-  messagingSenderId: "734794260459",
-  appId: "1:734794260459:web:f8ce2666973ee2e47c83ae",
-  measurementId: "G-27GFC2K4NY"
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  projectId: "YOUR_PROJECT",
+  storageBucket: "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "XXXX",
+  appId: "XXXX"
 };
 
 const app = initializeApp(firebaseConfig);
